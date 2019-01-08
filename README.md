@@ -45,7 +45,7 @@ e1m1.vertexes.forEach( v => console.log( v.x, v.y ) )
 ## todo
 
 - `writeLumpData`
-- `objectModelToWad`
+- `createWad( doomObjectModel )`
 - maybe make all the public facing APIs use `ArrayBuffer` instead of `DataView`
 
 ## license
