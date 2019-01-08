@@ -1,8 +1,7 @@
 import * as assert from 'assert'
 import { readFileSync } from 'fs'
-import { readWad } from '../wad/read/read-wad'
-import { createObjectModel } from '../object-model'
 import { stringify, decompress } from './fixtures/utils'
+import { readWad, createObjectModel } from '..'
 
 const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
 const testWadView = new DataView( testWadData.buffer )

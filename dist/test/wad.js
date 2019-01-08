@@ -2,21 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const assert = require("assert");
 const fs_1 = require("fs");
-const read_wad_1 = require("../wad/read/read-wad");
-const write_wad_1 = require("../wad/write/write-wad");
+const __1 = require("..");
 const read_lump_info_1 = require("../wad/read/read-lump-info");
 const testWadData = fs_1.readFileSync('./src/test/fixtures/doom1.wad');
 const testWadView = new DataView(testWadData.buffer);
 describe('wad', () => {
     it('reads a WAD', () => {
-        const wad = read_wad_1.readWad(testWadView);
+        const wad = __1.readWad(testWadView);
         assert.strictEqual(wad.type, 'IWAD');
         assert.strictEqual(wad.lumps.length, 1264);
     });
     it('writes a WAD', () => {
         const expectData = fs_1.readFileSync('./src/test/fixtures/doom1.wad');
-        const wad = read_wad_1.readWad(testWadView);
-        const wadView = write_wad_1.writeWad(wad);
+        const wad = __1.readWad(testWadView);
+        const wadView = __1.writeWad(wad);
         assert.deepEqual(wadView.buffer, expectData.buffer);
     });
     it('gets a lump info table', () => {
@@ -33,11 +32,11 @@ describe('wad', () => {
             name: 'GOODLUMP',
             data: new DataView(lumpData.buffer)
         };
-        const wadView = write_wad_1.writeWad({
+        const wadView = __1.writeWad({
             type: 'PWAD',
             lumps: [lump]
         });
-        const wad = read_wad_1.readWad(wadView);
+        const wad = __1.readWad(wadView);
         assert.deepEqual(wad.lumps[0], expect);
     });
     it('enforces valid lump names', () => {
@@ -50,7 +49,7 @@ describe('wad', () => {
             type: 'PWAD',
             lumps: [lump]
         };
-        assert.throws(() => write_wad_1.writeWad(wad));
+        assert.throws(() => __1.writeWad(wad));
     });
 });
 //# sourceMappingURL=wad.js.map

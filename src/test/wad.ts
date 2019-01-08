@@ -1,8 +1,7 @@
 import * as assert from 'assert'
 import { readFileSync } from 'fs'
 import { Lump, Wad } from '../wad/types'
-import { readWad } from '../wad/read/read-wad'
-import { writeWad } from '../wad/write/write-wad'
+import { readWad, writeWad } from '..';
 import { readLumpInfoTable } from '../wad/read/read-lump-info'
 
 const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
