@@ -42,6 +42,11 @@ e1m1.vertexes.forEach( v => console.log( v.x, v.y ) )
 // etc.
 ```
 
+## todo
+
+- `writeLumpData`
+- `objectModelToWad`
+
 ## license
 
 MIT License
