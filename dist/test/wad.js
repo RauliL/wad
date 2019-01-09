@@ -5,32 +5,31 @@ const fs_1 = require("fs");
 const __1 = require("..");
 const read_lump_info_1 = require("../wad/read/read-lump-info");
 const testWadData = fs_1.readFileSync('./src/test/fixtures/doom1.wad');
-const testWadView = new DataView(testWadData.buffer);
 describe('wad', () => {
     it('reads a WAD', () => {
-        const wad = __1.readWad(testWadView);
+        const wad = __1.readWad(testWadData);
         assert.strictEqual(wad.type, 'IWAD');
         assert.strictEqual(wad.lumps.length, 1264);
     });
     it('writes a WAD', () => {
         const expectData = fs_1.readFileSync('./src/test/fixtures/doom1.wad');
-        const wad = __1.readWad(testWadView);
-        const wadView = __1.writeWad(wad);
-        assert.deepEqual(wadView.buffer, expectData.buffer);
+        const wad = __1.readWad(testWadData);
+        const out = __1.writeWad(wad);
+        assert.deepEqual(out.buffer, expectData.buffer);
     });
     it('gets a lump info table', () => {
-        const lumps = read_lump_info_1.readLumpInfoTable(testWadView);
+        const lumps = read_lump_info_1.readLumpInfoTable(testWadData);
         assert.strictEqual(lumps.length, 1264);
     });
     it('ensures string length for lump names', () => {
         const lumpData = new Uint8Array([1, 2, 3]);
         const lump = {
             name: 'GOODLUMP1',
-            data: new DataView(lumpData.buffer)
+            data: lumpData
         };
         const expect = {
             name: 'GOODLUMP',
-            data: new DataView(lumpData.buffer)
+            data: lumpData
         };
         const wadView = __1.writeWad({
             type: 'PWAD',
@@ -43,7 +42,7 @@ describe('wad', () => {
         const lumpData = new Uint8Array([1, 2, 3]);
         const lump = {
             name: 'bad lump name',
-            data: new DataView(lumpData.buffer)
+            data: lumpData
         };
         const wad = {
             type: 'PWAD',

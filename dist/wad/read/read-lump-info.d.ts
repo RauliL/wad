@@ -1,2 +1,2 @@
 import { WadHeader, LumpInfo } from '../types';
-export declare const readLumpInfoTable: (wadView: DataView, header?: WadHeader | undefined) => LumpInfo[];
+export declare const readLumpInfoTable: (data: Uint8Array, header?: WadHeader | undefined) => LumpInfo[];

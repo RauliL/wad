@@ -22,11 +22,11 @@ export const readers: ReaderMap = {
   reject: raw
 }
 
-export const readLumpData = ( lumpData: DataView, lumpType: string = 'raw' ) => {
+export const readLumpData = ( lumpData: Uint8Array, lumpType: string = 'raw' ) => {
   const name = lumpType.toLowerCase().trim()
   const reader = readers[ name ]
 
   if ( !reader ) throw Error( `Unexpected lumpType ${ name }` )
 
-  return reader( lumpData )
+  return reader( new DataView( lumpData.buffer ) )
 }

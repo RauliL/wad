@@ -11,19 +11,17 @@ const {
 } = require( '@nrkn/wad' )
 
 // read a wad
-const data = readFileSync( 'example.wad' )
-const view = new DataView( data.buffer )
-const wad = readWad( view )
+const wad = readWad( readFileSync( 'example.wad' ) )
 
 // write a wad
 const newLump = {
   name: 'NEWLUMP',
-  data: new DataView( new Uint8Array( [ 1, 2, 3 ] ).buffer )
+  data: new Uint8Array( [ 1, 2, 3 ] )
 }
 
 wad.lumps.push( newLump )
 
-writeFileSync( 'new.wad', writeWad( wad ).buffer )
+writeFileSync( 'new.wad', writeWad( wad ) )
 
 // read lump data
 const playpalLump = wad.lumps.find( lump => lump.name === 'PLAYPAL' )
@@ -46,7 +44,6 @@ e1m1.vertexes.forEach( v => console.log( v.x, v.y ) )
 
 - `writeLumpData`
 - `createWad( doomObjectModel )`
-- maybe make all the public facing APIs use `ArrayBuffer` instead of `DataView`
 
 ## license
 

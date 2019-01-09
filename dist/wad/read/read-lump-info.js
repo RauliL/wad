@@ -13,8 +13,9 @@ const readLumpInfo = (wadView, lumpOffset, id) => {
         length
     };
 };
-exports.readLumpInfoTable = (wadView, header) => {
-    header = header || read_wad_header_1.readWadHeader(wadView);
+exports.readLumpInfoTable = (data, header) => {
+    header = header || read_wad_header_1.readWadHeader(data);
+    const wadView = new DataView(data.buffer);
     const infoTable = [];
     for (let i = 0; i < header.numberOfLumps; i++) {
         const offset = 16 * i + header.infoTableOffset;

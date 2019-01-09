@@ -1,8 +1,9 @@
 import { LumpInfo, Lump } from '../types'
 
-export const readLump = ( wadView: DataView, info: LumpInfo ) => {
+export const readLump = ( wadData: Uint8Array, info: LumpInfo ) => {
   const { name, offset, length } = info
-  const data = new DataView( wadView.buffer, offset, length )
+
+  const data = new Uint8Array( wadData.slice( offset, offset + length ) )
 
   return <Lump>{ name, data }
 }

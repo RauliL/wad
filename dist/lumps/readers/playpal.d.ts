@@ -1,1 +1,1 @@
-export declare const playpal: (view: DataView) => [number, number, number][][];
+export declare const playpal: (view: DataView) => Uint8Array[];

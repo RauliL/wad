@@ -19,16 +19,14 @@ exports.writeWad = (wad) => {
         if (!utils_1.lumpNameRegex.test(lump.name))
             throw Error(`Bad lump name: ${lump.name}`);
         const infoOffset = 16 * i + infoTableOffset;
-        const { buffer, byteOffset, byteLength } = lump.data;
-        const lumpBytes = new Uint8Array(buffer.slice(byteOffset, byteLength));
         // lump info table entry
         utils_1.writeInt32(view, infoOffset, filePosition);
         utils_1.writeInt32(view, infoOffset + 4, lump.data.byteLength);
         utils_1.writeAscii(view, infoOffset + 8, utils_1.ensureStringLength(lump.name, 8));
         // lump
-        data.set(lumpBytes, filePosition);
+        data.set(lump.data, filePosition);
         filePosition += lump.data.byteLength;
     });
-    return view;
+    return data;
 };
 //# sourceMappingURL=write-wad.js.map

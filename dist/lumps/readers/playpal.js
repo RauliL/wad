@@ -6,7 +6,7 @@ exports.playpal = (view) => {
     const palettes = Array(paletteCount);
     let offset = 0;
     for (var i = 0; i < paletteCount; i++) {
-        const palette = Array(256);
+        const palette = new Uint8Array(768);
         for (let j = 0; j < 256; j++) {
             let r = utils_1.readUint8(view, offset);
             offset++;
@@ -14,7 +14,10 @@ exports.playpal = (view) => {
             offset++;
             let b = utils_1.readUint8(view, offset);
             offset++;
-            palette[j] = [r, g, b];
+            const p = j * 3;
+            palette[p] = r;
+            palette[p + 1] = g;
+            palette[p + 2] = b;
         }
         palettes[i] = palette;
     }

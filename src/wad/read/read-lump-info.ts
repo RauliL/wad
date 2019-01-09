@@ -15,9 +15,10 @@ const readLumpInfo = ( wadView: DataView, lumpOffset: number, id: number ) => {
   }
 }
 
-export const readLumpInfoTable = ( wadView: DataView, header?: WadHeader ) => {
-  header = header || readWadHeader( wadView )
+export const readLumpInfoTable = ( data: Uint8Array, header?: WadHeader ) => {
+  header = header || readWadHeader( data )
 
+  const wadView = new DataView( data.buffer )
   const infoTable: LumpInfo[] = []
 
   for ( let i = 0; i < header.numberOfLumps; i++ ) {

@@ -1,15 +1,14 @@
 import * as assert from 'assert'
-import { readFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 import { Lump, Wad } from '../wad/types'
 import { readWad, writeWad } from '..';
 import { readLumpInfoTable } from '../wad/read/read-lump-info'
 
 const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
-const testWadView = new DataView( testWadData.buffer )
 
 describe( 'wad', () => {
   it( 'reads a WAD', () => {
-    const wad = readWad( testWadView )
+    const wad = readWad( testWadData )
 
     assert.strictEqual( wad.type, 'IWAD' )
     assert.strictEqual( wad.lumps.length, 1264 )
@@ -17,14 +16,14 @@ describe( 'wad', () => {
 
   it( 'writes a WAD', () => {
     const expectData = readFileSync( './src/test/fixtures/doom1.wad' )
-    const wad = readWad( testWadView )
-    const wadView = writeWad( wad )
+    const wad = readWad( testWadData )
+    const out = writeWad( wad )
 
-    assert.deepEqual( wadView.buffer, expectData.buffer )
+    assert.deepEqual( out.buffer, expectData.buffer )
   } )
 
   it( 'gets a lump info table', () => {
-    const lumps = readLumpInfoTable( testWadView )
+    const lumps = readLumpInfoTable( testWadData )
 
     assert.strictEqual( lumps.length, 1264 )
   })
@@ -34,12 +33,12 @@ describe( 'wad', () => {
 
     const lump: Lump = {
       name: 'GOODLUMP1',
-      data: new DataView( lumpData.buffer )
+      data: lumpData
     }
 
     const expect: Lump = {
       name: 'GOODLUMP',
-      data: new DataView( lumpData.buffer )
+      data: lumpData
     }
 
     const wadView = writeWad( {
@@ -57,7 +56,7 @@ describe( 'wad', () => {
 
     const lump: Lump = {
       name: 'bad lump name',
-      data: new DataView( lumpData.buffer )
+      data: lumpData
     }
 
     const wad: Wad = {

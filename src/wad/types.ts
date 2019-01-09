@@ -7,7 +7,7 @@ export interface Wad {
 
 export interface Lump {
   name: string
-  data: DataView
+  data: Uint8Array
 }
 
 export interface WadHeader {

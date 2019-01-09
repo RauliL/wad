@@ -26,6 +26,6 @@ exports.readLumpData = (lumpData, lumpType = 'raw') => {
     const reader = exports.readers[name];
     if (!reader)
         throw Error(`Unexpected lumpType ${name}`);
-    return reader(lumpData);
+    return reader(new DataView(lumpData.buffer));
 };
 //# sourceMappingURL=read-lump-data.js.map

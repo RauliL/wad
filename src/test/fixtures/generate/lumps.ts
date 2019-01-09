@@ -4,8 +4,7 @@ import { findLump, testLumps, compress } from '../utils'
 
 export const generateLumps = () => {
   const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
-  const testWadView = new DataView( testWadData.buffer )
-  const testWad = readWad( testWadView )
+  const testWad = readWad( testWadData )
   const { lumps } = testWad
 
   const lumpTypes = Object.keys( testLumps )

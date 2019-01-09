@@ -5,8 +5,7 @@ const fs_1 = require("fs");
 const utils_1 = require("./fixtures/utils");
 const __1 = require("..");
 const testWadData = fs_1.readFileSync('./src/test/fixtures/doom1.wad');
-const testWadView = new DataView(testWadData.buffer);
-const testWad = __1.readWad(testWadView);
+const testWad = __1.readWad(testWadData);
 const { lumps } = testWad;
 const lumpTypes = Object.keys(utils_1.testLumps);
 const testLump = (lumpType) => {

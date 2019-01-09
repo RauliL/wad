@@ -30,8 +30,6 @@ export const writeWad = ( wad: Wad ) => {
       throw Error( `Bad lump name: ${ lump.name }` )
 
     const infoOffset = 16 * i + infoTableOffset
-    const { buffer, byteOffset, byteLength } = lump.data
-    const lumpBytes = new Uint8Array( buffer.slice( byteOffset, byteLength ) )
 
     // lump info table entry
     writeInt32( view, infoOffset, filePosition )
@@ -39,10 +37,10 @@ export const writeWad = ( wad: Wad ) => {
     writeAscii( view, infoOffset + 8, ensureStringLength( lump.name, 8 ) )
 
     // lump
-    data.set( lumpBytes, filePosition )
+    data.set( lump.data, filePosition )
 
     filePosition += lump.data.byteLength
   } )
 
-  return view
+  return data
 }

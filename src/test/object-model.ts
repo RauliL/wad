@@ -4,8 +4,7 @@ import { stringify, decompress } from './fixtures/utils'
 import { readWad, createObjectModel } from '..'
 
 const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
-const testWadView = new DataView( testWadData.buffer )
-const testWad = readWad( testWadView )
+const testWad = readWad( testWadData )
 
 describe( 'object model', () => {
   // not present in test data
@@ -43,8 +42,7 @@ describe( 'object model', () => {
 
   it( 'pwad', () => {
     const testWadData = readFileSync( './src/test/fixtures/doomba.wad' )
-    const testWadView = new DataView( testWadData.buffer )
-    const testWad = readWad( testWadView )
+    const testWad = readWad( testWadData )
     const data = createObjectModel( testWad )
     const value = JSON.parse( stringify( data ) )
 
