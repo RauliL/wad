@@ -26,7 +26,7 @@ writeFileSync( 'new.wad', writeWad( wad ) )
 // read lump data
 const playpalLump = wad.lumps.find( lump => lump.name === 'PLAYPAL' )
 
-const palettes = readLumpData( playpalLump, 'PLAYPAL' )
+const palettes = readLumpData( playpalLump.data, 'PLAYPAL' )
 
 // create an object model
 const doomObjectModel = createObjectModel( wad )
