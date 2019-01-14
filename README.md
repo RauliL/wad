@@ -46,6 +46,9 @@ e1m1.vertexes.forEach( v => console.log( v.x, v.y ) )
   but isn't huge
 - `writeLumpData`
 - `createWad( doomObjectModel )`
+- Maybe it's not useful to have pictures stored with columns etc, consider
+  returning them in a more useful format, eg indexed variant of `ImageData` - or
+  maybe this should just be a util function?
 
 ## license
 
