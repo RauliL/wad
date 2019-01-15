@@ -1,5 +1,5 @@
 import { Blockmap } from '../types'
-import { readInt16 } from '../../utils'
+import { readInt16, readUint16 } from '../../utils'
 
 export const blockmap = ( view: DataView ) => {
   const x = readInt16( view, 0 )
@@ -14,7 +14,7 @@ export const blockmap = ( view: DataView ) => {
 
   for( let i = 0; i < size; i++ ){
     //offsets are short, but we want bytes
-    blockOffsets[ i ] = readInt16( view, offset ) * 2
+    blockOffsets[ i ] = readUint16( view, offset ) * 2
     offset +=2
   }
 

@@ -4,8 +4,17 @@ export const readUint8 = ( view: DataView, offset: number ) =>
 export const readInt16 = ( view: DataView, offset: number ) =>
   view.getInt16( offset, true )
 
+export const readUint16 = ( view: DataView, offset: number ) =>
+  view.getUint16( offset, true )
+
 export const readInt32 = ( view: DataView, offset: number ) =>
   view.getInt32( offset, true )
+
+export const writeInt16 = ( view: DataView, offset: number, value: number ) =>
+  view.setInt16( offset, value, true )
+
+export const writeUint16 = ( view: DataView, offset: number, value: number ) =>
+  view.setUint16( offset, value, true )
 
 export const writeInt32 = ( view: DataView, offset: number, value: number ) =>
   view.setInt32( offset, value, true )

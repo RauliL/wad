@@ -11,7 +11,7 @@ exports.blockmap = (view) => {
     let offset = 8;
     for (let i = 0; i < size; i++) {
         //offsets are short, but we want bytes
-        blockOffsets[i] = utils_1.readInt16(view, offset) * 2;
+        blockOffsets[i] = utils_1.readUint16(view, offset) * 2;
         offset += 2;
     }
     const blocks = [];

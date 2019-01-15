@@ -7,15 +7,14 @@ exports.picture = (view) => {
     const left = utils_1.readInt16(view, 4);
     const top = utils_1.readInt16(view, 6);
     const columnOffsets = [];
-    const columns = [];
+    const data = new Uint8Array(width * height);
     let offset = 8;
     for (let i = 0; i < width; i++) {
         columnOffsets.push(utils_1.readInt32(view, offset));
         offset += 4;
-        columns.push(new Uint8Array(height));
     }
-    for (let i = 0; i < width; i++) {
-        offset = columnOffsets[i];
+    for (let x = 0; x < width; x++) {
+        offset = columnOffsets[x];
         let rowStart = 0;
         while (rowStart !== 255) {
             rowStart = utils_1.readUint8(view, offset);
@@ -27,7 +26,9 @@ exports.picture = (view) => {
             //skip dummy byte
             offset++;
             for (let j = 0; j < pixelCount; j++) {
-                columns[i][j + rowStart] = utils_1.readUint8(view, offset);
+                const y = j + rowStart;
+                const i = y * width + x;
+                data[i] = utils_1.readUint8(view, offset);
                 offset++;
             }
             //skip dummy byte
@@ -35,7 +36,7 @@ exports.picture = (view) => {
         }
     }
     return {
-        width, height, left, top, columns
+        width, height, left, top, data
     };
 };
 //# sourceMappingURL=picture.js.map

@@ -51,7 +51,7 @@ export interface Picture {
     height: number;
     left: number;
     top: number;
-    columns: Uint8Array[];
+    data: Uint8Array;
 }
 export declare type Rgb = [number, number, number];
 export interface Sector {

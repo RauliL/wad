@@ -2,6 +2,7 @@ import * as assert from 'assert'
 import { readFileSync } from 'fs'
 import { stringify, testLumps, findLump, decompress } from './fixtures/utils'
 import { readWad, readLumpData } from '..'
+import { writeBlockmap } from '../lumps/writers/blockmap';
 
 const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
 const testWad = readWad( testWadData )
@@ -31,7 +32,7 @@ const testLump = ( lumpType: string ) => {
   } )
 }
 
-describe( 'lumps', () => {
+describe( 'read lumps', () => {
   lumpTypes.forEach( testLump )
 
   it( 'fails on bad lump name', () => {
@@ -52,3 +53,13 @@ describe( 'lumps', () => {
     assert.deepEqual( result, expect )
   })
 } )
+
+describe( 'write lumps', () => {
+  it( 'blockmap', () => {
+    const blockmapLump = findLump( lumps, 'BLOCKMAP' )
+    const blockmap = readLumpData( blockmapLump.data, 'BLOCKMAP' )
+    const outLump = writeBlockmap( blockmap )
+
+    assert.deepEqual( outLump, blockmapLump )
+  })
+})

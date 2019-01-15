@@ -8,19 +8,17 @@ export const picture = ( view: DataView ) => {
   const top = readInt16( view, 6 )
 
   const columnOffsets: number[] = []
-  const columns: Uint8Array[] = []
+  const data = new Uint8Array( width * height )
 
   let offset = 8
 
   for ( let i = 0; i < width; i++ ) {
     columnOffsets.push( readInt32( view, offset ) )
     offset += 4
-
-    columns.push( new Uint8Array( height ) )
   }
 
-  for ( let i = 0; i < width; i++ ) {
-    offset = columnOffsets[ i ]
+  for ( let x = 0; x < width; x++ ) {
+    offset = columnOffsets[ x ]
 
     let rowStart = 0
 
@@ -37,7 +35,10 @@ export const picture = ( view: DataView ) => {
       offset++
 
       for ( let j = 0; j < pixelCount; j++ ) {
-        columns[ i ][ j + rowStart ] = readUint8( view, offset )
+        const y = j + rowStart
+        const i = y * width + x
+
+        data[ i ] = readUint8( view, offset )
         offset++
       }
 
@@ -47,6 +48,6 @@ export const picture = ( view: DataView ) => {
   }
 
   return <Picture>{
-    width, height, left, top, columns
+    width, height, left, top, data
   }
 }
