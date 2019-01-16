@@ -149,7 +149,7 @@ const getPatches = (
 
 const getPlayPal = (
   wad: Wad, nameToIndexMap: NameToIndexMap, processed: boolean[]
-): Array<Rgb[]> => getLump( wad, nameToIndexMap, processed, 'PLAYPAL' ) || []
+): Uint8Array[] => getLump( wad, nameToIndexMap, processed, 'PLAYPAL' ) || []
 
 const getColorMap = (
   wad: Wad, nameToIndexMap: NameToIndexMap, processed: boolean[]

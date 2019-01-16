@@ -1,0 +1,62 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+body, .wad-viewer {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.wad-viewer {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+
+.viewer {
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+}
+
+.lumps, .lumps2 {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 2rem;
+}
+
+.lump, .lump2 {
+  cursor: pointer;
+}
+
+.preview {
+  background: #f0f0f0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.preview canvas {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+canvas.fit {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.selected {
+  background: #39f;
+  color: #fff;
+}

@@ -5,10 +5,15 @@ export interface Blockmap {
     rows: number;
     blocks: Int16Array[];
 }
-export interface Flat {
+export interface IndexedImage {
+    width: number;
+    height: number;
+    data: Uint8Array;
+    transparent?: number;
+}
+export interface Flat extends IndexedImage {
     width: 64;
     height: 64;
-    data: Uint8Array;
 }
 export interface LinedefFlags {
     impassable: boolean;
@@ -46,12 +51,9 @@ export interface Node {
     rightChild: number;
     leftChild: number;
 }
-export interface Picture {
-    width: number;
-    height: number;
+export interface Picture extends IndexedImage {
     left: number;
     top: number;
-    data: Uint8Array;
 }
 export declare type Rgb = [number, number, number];
 export interface Sector {

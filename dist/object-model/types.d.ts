@@ -1,4 +1,4 @@
-import { Thing, Linedef, Sidedef, Vertex, Seg, Ssector, Node, Sector, Blockmap, Flat, Picture, Rgb, Texture } from '../lumps/types';
+import { Thing, Linedef, Sidedef, Vertex, Seg, Ssector, Node, Sector, Blockmap, Flat, Picture, Texture } from '../lumps/types';
 import { WadType } from '../wad/types';
 export interface NameToIndexMap {
     [name: string]: number;
@@ -36,7 +36,7 @@ export interface DoomObjectModel {
     genmidi: RawMap;
     levels: Level[];
     music: RawMap;
-    playpal: Rgb[][];
+    playpal: Uint8Array[];
     patches: PictureMap;
     sounds: RawMap;
     sprites: PictureMap;

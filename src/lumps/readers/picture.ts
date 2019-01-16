@@ -1,6 +1,10 @@
 import { readInt16, readInt32, readUint8 } from '../../utils'
 import { Picture } from '../types'
 
+// nb this is just a hack, should actually search for an unused color and use
+// that instead
+const transparent = 247
+
 export const picture = ( view: DataView ) => {
   const width = readInt16( view, 0 )
   const height = readInt16( view, 2 )
@@ -9,6 +13,8 @@ export const picture = ( view: DataView ) => {
 
   const columnOffsets: number[] = []
   const data = new Uint8Array( width * height )
+
+  data.fill( transparent )
 
   let offset = 8
 
@@ -48,6 +54,6 @@ export const picture = ( view: DataView ) => {
   }
 
   return <Picture>{
-    width, height, left, top, data
+    width, height, left, top, data, transparent
   }
 }

@@ -44,7 +44,7 @@ export interface DoomObjectModel {
   genmidi: RawMap
   levels: Level[]
   music: RawMap
-  playpal: Rgb[][]
+  playpal: Uint8Array[]
   patches: PictureMap
   sounds: RawMap
   sprites: PictureMap
