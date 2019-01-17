@@ -32,7 +32,8 @@ exports.picture = (view) => {
             for (let j = 0; j < pixelCount; j++) {
                 const y = j + rowStart;
                 const i = y * width + x;
-                data[i] = utils_1.readUint8(view, offset);
+                const c = utils_1.readUint8(view, offset);
+                data[i] = c;
                 offset++;
             }
             //skip dummy byte

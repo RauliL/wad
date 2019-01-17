@@ -1,16 +1,13 @@
 import { readWad } from '../wad/read/read-wad'
-import { readLumpData } from '../lumps/read-lump-data'
-import { findLump } from '../test/fixtures/utils'
-import { Lump } from '../wad/types'
 import { paletteToCanvas } from './palette-to-canvas'
 import { colormapToCanvas } from './colormap-to-canvas'
 import { createObjectModel } from '../object-model'
-import { imageToCanvas } from './image-to-canvas';
-import { DoomObjectModel } from '../object-model/types';
-import { textureToCanvas } from './texture-to-canvas';
-import { LevelViewSettings } from './types';
-import { on } from 'cluster';
-import { levelToSvg } from './level-to-svg';
+import { imageToCanvas } from './image-to-canvas'
+import { DoomObjectModel } from '../object-model/types'
+import { textureToCanvas } from './texture-to-canvas'
+import { LevelViewSettings } from './types'
+import { levelToSvg } from './level-to-svg'
+import { zoomSvg, panSvg } from './svg-events'
 
 const exclude = [
   'type', 'demos', 'dmxgus', 'dmxgusc', 'endoom', 'genmidi', 'music', 'sounds'
@@ -227,9 +224,31 @@ document.addEventListener( 'DOMContentLoaded', async () => {
           } )
 
           previewEl.innerHTML = ''
+
           const svg = levelToSvg( level, showLevelElement )
+
           svg.classList.add( 'fit' )
+
+          zoomSvg( svg )
+          panSvg( svg )
+
           previewEl.appendChild( svg )
+
+          const resetZoomButton = document.createElement( 'button' )
+          resetZoomButton.type = 'button'
+          resetZoomButton.appendChild( document.createTextNode( 'Reset Zoom' ) )
+          resetZoomButton.onclick = e => {
+            e.preventDefault()
+
+            const x = parseFloat( svg.dataset.minX! ) - 8
+            const y = parseFloat( svg.dataset.minY! ) - 8
+            const width = parseFloat( svg.dataset.width! ) + 16
+            const height = parseFloat( svg.dataset.height! ) + 16
+
+            Object.assign( svg.viewBox.baseVal, { x, y, width, height } )
+          }
+
+          browser3El.appendChild( resetZoomButton )
         }
 
         draw()

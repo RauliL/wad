@@ -44,7 +44,10 @@ export const picture = ( view: DataView ) => {
         const y = j + rowStart
         const i = y * width + x
 
-        data[ i ] = readUint8( view, offset )
+        const c = readUint8( view, offset )
+
+        data[ i ] = c
+
         offset++
       }
 

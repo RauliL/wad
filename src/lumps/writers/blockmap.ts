@@ -4,6 +4,7 @@ import { writeInt16, writeUint16 } from '../../utils'
 const name = 'BLOCKMAP'
 const headerSize = 8
 
+// does not work correctly :/
 export const writeBlockmap = ( blockmap: Blockmap ) => {
   const { x, y, columns, rows, blocks } = blockmap
 

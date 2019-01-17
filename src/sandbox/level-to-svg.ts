@@ -34,7 +34,11 @@ export const levelToSvg = ( level: Level, settings: LevelViewSettings ) => {
 
   div.innerHTML = svgText
 
-  return <SVGSVGElement>div.firstElementChild
+  const svg = <SVGSVGElement>div.firstElementChild
+
+  Object.assign( svg.dataset, { minX, minY, maxX, maxY, width, height } )
+
+  return svg
 }
 
 const grid = `

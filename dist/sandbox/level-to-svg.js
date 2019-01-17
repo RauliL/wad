@@ -30,7 +30,9 @@ exports.levelToSvg = (level, settings) => {
     </svg>
   `;
     div.innerHTML = svgText;
-    return div.firstElementChild;
+    const svg = div.firstElementChild;
+    Object.assign(svg.dataset, { minX, minY, maxX, maxY, width, height });
+    return svg;
 };
 const grid = `
   <defs>
