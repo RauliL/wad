@@ -64,7 +64,7 @@ exports.blockmap = (view) => {
     return { x, y, columns, rows, blocks };
 };
 
-},{"../../utils":25}],3:[function(require,module,exports){
+},{"../../utils":27}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -84,7 +84,7 @@ exports.colormap = (view) => {
     return maps;
 };
 
-},{"../../utils":25}],4:[function(require,module,exports){
+},{"../../utils":27}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -99,7 +99,7 @@ exports.flat = (view) => {
     return { width, height, data };
 };
 
-},{"../../utils":25}],5:[function(require,module,exports){
+},{"../../utils":27}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -137,7 +137,7 @@ exports.linedefs = (view) => {
     return linedefs;
 };
 
-},{"../../utils":25}],6:[function(require,module,exports){
+},{"../../utils":27}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -174,7 +174,7 @@ exports.nodes = (view) => {
     return nodes;
 };
 
-},{"../../utils":25}],7:[function(require,module,exports){
+},{"../../utils":27}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -221,7 +221,7 @@ exports.picture = (view) => {
     };
 };
 
-},{"../../utils":25}],8:[function(require,module,exports){
+},{"../../utils":27}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -248,7 +248,7 @@ exports.playpal = (view) => {
     return palettes;
 };
 
-},{"../../utils":25}],9:[function(require,module,exports){
+},{"../../utils":27}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -263,7 +263,7 @@ exports.pnames = (view) => {
     return pnames;
 };
 
-},{"../../utils":25}],10:[function(require,module,exports){
+},{"../../utils":27}],10:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.raw = (view) => view;
@@ -294,7 +294,7 @@ exports.sectors = (view) => {
     return sectors;
 };
 
-},{"../../utils":25}],12:[function(require,module,exports){
+},{"../../utils":27}],12:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -319,7 +319,7 @@ exports.segs = (view) => {
     return segs;
 };
 
-},{"../../utils":25}],13:[function(require,module,exports){
+},{"../../utils":27}],13:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -344,7 +344,7 @@ exports.sidedefs = (view) => {
     return sidedefs;
 };
 
-},{"../../utils":25}],14:[function(require,module,exports){
+},{"../../utils":27}],14:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -363,7 +363,7 @@ exports.ssectors = (view) => {
     return ssectors;
 };
 
-},{"../../utils":25}],15:[function(require,module,exports){
+},{"../../utils":27}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -396,7 +396,7 @@ exports.texture = (view) => {
     return textures;
 };
 
-},{"../../utils":25}],16:[function(require,module,exports){
+},{"../../utils":27}],16:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -427,7 +427,7 @@ exports.things = (view) => {
     return things;
 };
 
-},{"../../utils":25}],17:[function(require,module,exports){
+},{"../../utils":27}],17:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -446,7 +446,7 @@ exports.vertexes = (view) => {
     return vertexes;
 };
 
-},{"../../utils":25}],18:[function(require,module,exports){
+},{"../../utils":27}],18:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const read_lump_data_1 = require("../lumps/read-lump-data");
@@ -723,18 +723,21 @@ const colormap_to_canvas_1 = require("./colormap-to-canvas");
 const object_model_1 = require("../object-model");
 const image_to_canvas_1 = require("./image-to-canvas");
 const texture_to_canvas_1 = require("./texture-to-canvas");
+const level_to_svg_1 = require("./level-to-svg");
 const exclude = [
     'type', 'demos', 'dmxgus', 'dmxgusc', 'endoom', 'genmidi', 'music', 'sounds'
 ];
 document.addEventListener('DOMContentLoaded', async () => {
     const filePicker = document.querySelector('input[type="file"]');
-    const lumpsEl = document.querySelector('.lumps');
-    const lumps2El = document.querySelector('.lumps2');
+    const browser1El = document.querySelector('.browser-1');
+    const browser2El = document.querySelector('.browser-2');
+    const browser3El = document.querySelector('.browser-3');
     const previewEl = document.querySelector('.preview');
     const reader = new FileReader();
     filePicker.addEventListener('change', e => {
-        lumpsEl.innerHTML = '';
-        lumps2El.innerHTML = '';
+        browser1El.innerHTML = '';
+        browser2El.innerHTML = '';
+        browser3El.innerHTML = '';
         previewEl.innerHTML = '';
         const [file] = e.target['files'];
         reader.onload = e => {
@@ -744,16 +747,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(om);
             const names = Object.keys(om).filter(n => !exclude.includes(n)).filter(n => om[n]);
             names.forEach(name => {
-                const chooseLumpEl = document.createElement('div');
-                chooseLumpEl.classList.add('lump');
-                chooseLumpEl.innerText = name;
-                lumpsEl.appendChild(chooseLumpEl);
-                chooseLumpEl.addEventListener('click', () => {
-                    const lumpEls = document.querySelectorAll('.lump');
-                    lumpEls.forEach(el => el.classList.remove('selected'));
-                    chooseLumpEl.classList.add('selected');
+                const browserSelectEl = document.createElement('div');
+                browserSelectEl.classList.add('browser-select');
+                browserSelectEl.classList.add('browser-select-1');
+                browserSelectEl.innerText = name;
+                browser1El.appendChild(browserSelectEl);
+                browserSelectEl.addEventListener('click', () => {
+                    const select1Els = document.querySelectorAll('.browser-select-1');
+                    select1Els.forEach(el => el.classList.remove('selected'));
+                    browserSelectEl.classList.add('selected');
                     previewEl.innerHTML = '';
-                    lumps2El.innerHTML = '';
+                    browser2El.innerHTML = '';
+                    browser3El.innerHTML = '';
                     if (name === 'playpal' && om.playpal) {
                         showPlayPal(om.playpal);
                         return;
@@ -782,6 +787,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         showTextureBrowser(om);
                         return;
                     }
+                    if (name === 'levels' && om.levels && om.levels.length) {
+                        showLevelBrowser(om);
+                        return;
+                    }
                 });
             });
         };
@@ -802,9 +811,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const names = Object.keys(om[key]);
         names.forEach(n => {
             const el = document.createElement('div');
-            el.classList.add('lump2');
+            el.classList.add('browser-select');
+            el.classList.add('browser-select-2');
             el.innerText = n;
-            lumps2El.append(el);
+            browser2El.append(el);
             el.addEventListener('click', () => {
                 previewEl.innerHTML = '';
                 const image = om[key][n];
@@ -822,9 +832,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const patchList = Object.values(om.patches);
         om.textures.forEach(texture => {
             const el = document.createElement('div');
-            el.classList.add('lump2');
+            el.classList.add('browser-select');
+            el.classList.add('browser-select-2');
             el.innerText = texture.name;
-            lumps2El.append(el);
+            browser2El.append(el);
             el.addEventListener('click', () => {
                 previewEl.innerHTML = '';
                 const canvas = texture_to_canvas_1.textureToCanvas(texture, patchList, om.playpal[0]);
@@ -832,9 +843,156 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         });
     };
+    const showLevelElement = {
+        grid: true,
+        blockmap: false,
+        linedefs: true,
+        nodes: false,
+        reject: false,
+        sectors: true,
+        segs: false,
+        sidedefs: true,
+        ssectors: false,
+        things: true,
+        vertexes: true
+    };
+    const showLevelBrowser = (om) => {
+        om.levels.forEach(level => {
+            const el = document.createElement('div');
+            el.classList.add('browser-select');
+            el.classList.add('browser-select-2');
+            el.innerText = level.name;
+            browser2El.append(el);
+            el.addEventListener('click', () => {
+                const draw = () => {
+                    browser3El.innerHTML = '';
+                    Object.keys(showLevelElement).forEach(key => {
+                        const div = document.createElement('div');
+                        const label = document.createElement('label');
+                        const text = document.createTextNode(` ${key}`);
+                        const check = document.createElement('input');
+                        check.type = 'checkbox';
+                        check.checked = showLevelElement[key];
+                        check.onchange = () => {
+                            showLevelElement[key] = !showLevelElement[key];
+                            draw();
+                        };
+                        label.appendChild(check);
+                        label.appendChild(text);
+                        div.appendChild(label);
+                        browser3El.appendChild(div);
+                    });
+                    previewEl.innerHTML = '';
+                    const svg = level_to_svg_1.levelToSvg(level, showLevelElement);
+                    svg.classList.add('fit');
+                    previewEl.appendChild(svg);
+                };
+                draw();
+            });
+        });
+    };
 });
 
-},{"../object-model":18,"../wad/read/read-wad":29,"./colormap-to-canvas":19,"./image-to-canvas":21,"./palette-to-canvas":23,"./texture-to-canvas":24}],23:[function(require,module,exports){
+},{"../object-model":18,"../wad/read/read-wad":31,"./colormap-to-canvas":19,"./image-to-canvas":21,"./level-to-svg":23,"./palette-to-canvas":24,"./texture-to-canvas":25}],23:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const util_1 = require("./util");
+exports.levelToSvg = (level, settings) => {
+    let minX = Number.MAX_SAFE_INTEGER;
+    let minY = Number.MAX_SAFE_INTEGER;
+    let maxX = Number.MIN_SAFE_INTEGER;
+    let maxY = Number.MIN_SAFE_INTEGER;
+    level.vertexes.forEach(({ x, y }) => {
+        if (x < minX)
+            minX = x;
+        if (x > maxX)
+            maxX = x;
+        if (y < minY)
+            minY = y;
+        if (y > maxY)
+            maxY = y;
+    });
+    const width = maxX - minX;
+    const height = maxY - minY;
+    const div = document.createElement('div');
+    const svgText = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="${minX - 8} ${minY - 8} ${width + 16} ${height + 16}">
+      ${settings.grid ? grid : ''}
+      ${settings.vertexes ? vertexesToSvg(level.vertexes) : ''}
+      ${settings.linedefs ? linedefsToSvg(level.linedefs, level.vertexes) : ''}
+      ${settings.sidedefs ? sidedefsToSvg(level.linedefs, level.sidedefs, level.vertexes) : ''}
+      ${settings.things ? thingsToSvg(level.things) : ''}
+      ${settings.sectors ? sectorsToSvg(level) : ''}
+    </svg>
+  `;
+    div.innerHTML = svgText;
+    return div.firstElementChild;
+};
+const grid = `
+  <defs>
+    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <rect width="64" height="64" fill="url(#smallGrid)"/>
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="gray" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect x="-32768" y ="-32768" width="65535" height="65535" fill="url(#grid)" />
+`;
+const vertexesToSvg = (vertexes) => vertexes.map(({ x, y }) => `<circle class="vertex" cx="${x}" cy="${y}" r="${2}"></circle>`).join('');
+const linedefsToSvg = (linedefs, vertexes) => linedefs.map(linedef => {
+    const { startVertex, endVertex } = linedef;
+    const start = vertexes[startVertex];
+    const end = vertexes[endVertex];
+    return `<line class="linedef" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="black"></line>`;
+}).join('');
+const thingsToSvg = (things) => things.map(({ x, y }) => `<circle class="thing" cx="${x}" cy="${y}" r="${32}" fill="rgba( 127, 127, 127, 0.5 )"></circle>`).join('');
+const sidedefsToSvg = (linedefs, sidedefs, vertexes) => {
+    const length = 8;
+    let svg = '';
+    linedefs.forEach(linedef => {
+        const start = vertexes[linedef.startVertex];
+        const end = vertexes[linedef.endVertex];
+        const left = sidedefs[linedef.leftSidedef];
+        const right = sidedefs[linedef.rightSidedef];
+        const mid = util_1.midPoint(start, end);
+        const r = util_1.rads(start, end);
+        if (left) {
+            const newR = r + Math.PI / 2;
+            const newEnd = util_1.lineEnd(mid, newR, length);
+            svg += `<line class="sidedef left" x1="${mid.x}" y1="${mid.y}" x2="${newEnd.x}" y2="${newEnd.y}" stroke="red"></line>`;
+        }
+        if (right) {
+            const newR = r - Math.PI / 2;
+            const newEnd = util_1.lineEnd(mid, newR, length);
+            svg += `<line class="sidedef right" x1="${mid.x}" y1="${mid.y}" x2="${newEnd.x}" y2="${newEnd.y}" stroke="blue"></line>`;
+        }
+    });
+    return svg;
+};
+const sectorsToSvg = (level) => {
+    const { vertexes, linedefs, sidedefs, sectors } = level;
+    const hueStep = 360 / (sectors.length + 1);
+    let svg = '';
+    sectors.forEach((_sector, s) => {
+        const hue = s * hueStep;
+        linedefs.forEach(linedef => {
+            const left = sidedefs[linedef.leftSidedef];
+            const right = sidedefs[linedef.rightSidedef];
+            if ((left && left.sector === s) || (right && right.sector === s)) {
+                const { startVertex, endVertex } = linedef;
+                const start = vertexes[startVertex];
+                const end = vertexes[endVertex];
+                svg += `<line class="sector" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="hsla(${hue},100%,50%,0.5)"></line>`;
+            }
+        });
+    });
+    return svg;
+};
+
+},{"./util":26}],24:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const get_color_1 = require("./get-color");
@@ -855,7 +1013,7 @@ exports.paletteToCanvas = (palette, block = 16) => {
     return canvas;
 };
 
-},{"./get-color":20}],24:[function(require,module,exports){
+},{"./get-color":20}],25:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const image_to_canvas_1 = require("./image-to-canvas");
@@ -876,7 +1034,28 @@ exports.textureToCanvas = (texture, pictures, palette, block = 4) => {
     return canvas;
 };
 
-},{"./image-to-canvas":21}],25:[function(require,module,exports){
+},{"./image-to-canvas":21}],26:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.vertexEquals = (a, b) => a.x === b.x && a.y === b.y;
+exports.midPoint = (start, end) => {
+    const minX = Math.min(start.x, end.x);
+    const maxX = Math.max(start.x, end.x);
+    const minY = Math.min(start.y, end.y);
+    const maxY = Math.max(start.y, end.y);
+    const x = (maxX - minX) / 2 + minX;
+    const y = (maxY - minY) / 2 + minY;
+    return { x, y };
+};
+exports.rads = (start, end) => Math.atan2(end.y - start.y, end.x - start.x);
+exports.lineEnd = (start, rads, length) => {
+    const { x: sx, y: sy } = start;
+    const x = sx + Math.cos(rads) * length;
+    const y = sy + Math.sin(rads) * length;
+    return { x, y };
+};
+
+},{}],27:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readUint8 = (view, offset) => view.getUint8(offset);
@@ -909,7 +1088,7 @@ exports.ensureStringLength = (str, len) => {
 };
 exports.lumpNameRegex = /[0-9A-Z\[\]_\-\\]+/;
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -936,7 +1115,7 @@ exports.readLumpInfoTable = (data, header) => {
     return infoTable;
 };
 
-},{"../../utils":25,"./read-wad-header":28}],27:[function(require,module,exports){
+},{"../../utils":27,"./read-wad-header":30}],29:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readLump = (wadData, info) => {
@@ -945,7 +1124,7 @@ exports.readLump = (wadData, info) => {
     return { name, data };
 };
 
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -961,7 +1140,7 @@ exports.readWadHeader = (data) => {
     };
 };
 
-},{"../../utils":25}],29:[function(require,module,exports){
+},{"../../utils":27}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const read_wad_header_1 = require("./read-wad-header");
@@ -975,4 +1154,4 @@ exports.readWad = (data) => {
     return { type, lumps };
 };
 
-},{"./read-lump":27,"./read-lump-info":26,"./read-wad-header":28}]},{},[22]);
+},{"./read-lump":29,"./read-lump-info":28,"./read-wad-header":30}]},{},[22]);

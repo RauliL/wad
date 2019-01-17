@@ -8,6 +8,9 @@ import { createObjectModel } from '../object-model'
 import { imageToCanvas } from './image-to-canvas';
 import { DoomObjectModel } from '../object-model/types';
 import { textureToCanvas } from './texture-to-canvas';
+import { LevelViewSettings } from './types';
+import { on } from 'cluster';
+import { levelToSvg } from './level-to-svg';
 
 const exclude = [
   'type', 'demos', 'dmxgus', 'dmxgusc', 'endoom', 'genmidi', 'music', 'sounds'
@@ -15,14 +18,16 @@ const exclude = [
 
 document.addEventListener( 'DOMContentLoaded', async () => {
   const filePicker = <HTMLInputElement>document.querySelector( 'input[type="file"]' )
-  const lumpsEl = <HTMLDivElement>document.querySelector( '.lumps' )
-  const lumps2El = <HTMLDivElement>document.querySelector( '.lumps2' )
+  const browser1El = <HTMLDivElement>document.querySelector( '.browser-1' )
+  const browser2El = <HTMLDivElement>document.querySelector( '.browser-2' )
+  const browser3El = <HTMLDivElement>document.querySelector( '.browser-3' )
   const previewEl = <HTMLDivElement>document.querySelector( '.preview' )
   const reader = new FileReader()
 
   filePicker.addEventListener( 'change', e => {
-    lumpsEl.innerHTML = ''
-    lumps2El.innerHTML = ''
+    browser1El.innerHTML = ''
+    browser2El.innerHTML = ''
+    browser3El.innerHTML = ''
     previewEl.innerHTML = ''
 
     const [ file ] = e.target![ 'files' ]
@@ -41,20 +46,22 @@ document.addEventListener( 'DOMContentLoaded', async () => {
       )
 
       names.forEach( name => {
-        const chooseLumpEl = document.createElement( 'div' )
-        chooseLumpEl.classList.add( 'lump' )
-        chooseLumpEl.innerText = name
+        const browserSelectEl = document.createElement( 'div' )
+        browserSelectEl.classList.add( 'browser-select' )
+        browserSelectEl.classList.add( 'browser-select-1' )
+        browserSelectEl.innerText = name
 
-        lumpsEl.appendChild( chooseLumpEl )
+        browser1El.appendChild( browserSelectEl )
 
-        chooseLumpEl.addEventListener( 'click', () => {
-          const lumpEls = document.querySelectorAll( '.lump' )
+        browserSelectEl.addEventListener( 'click', () => {
+          const select1Els = document.querySelectorAll( '.browser-select-1' )
 
-          lumpEls.forEach( el => el.classList.remove( 'selected' ) )
-          chooseLumpEl.classList.add( 'selected' )
+          select1Els.forEach( el => el.classList.remove( 'selected' ) )
+          browserSelectEl.classList.add( 'selected' )
 
           previewEl.innerHTML = ''
-          lumps2El.innerHTML = ''
+          browser2El.innerHTML = ''
+          browser3El.innerHTML = ''
 
           if( name === 'playpal' && om.playpal ){
             showPlayPal( om.playpal )
@@ -95,6 +102,12 @@ document.addEventListener( 'DOMContentLoaded', async () => {
 
             return
           }
+
+          if( name === 'levels' && om.levels && om.levels.length ){
+            showLevelBrowser( <DoomObjectModel>om )
+
+            return
+          }
         })
       })
     }
@@ -123,10 +136,11 @@ document.addEventListener( 'DOMContentLoaded', async () => {
 
     names.forEach( n => {
       const el = document.createElement( 'div' )
-      el.classList.add( 'lump2' )
+      el.classList.add( 'browser-select' )
+      el.classList.add( 'browser-select-2' )
       el.innerText = n
 
-      lumps2El.append( el )
+      browser2El.append( el )
 
       el.addEventListener( 'click', () => {
         previewEl.innerHTML = ''
@@ -149,10 +163,11 @@ document.addEventListener( 'DOMContentLoaded', async () => {
 
     om.textures.forEach( texture => {
       const el = document.createElement( 'div' )
-      el.classList.add( 'lump2' )
+      el.classList.add( 'browser-select' )
+      el.classList.add( 'browser-select-2' )
       el.innerText = texture.name
 
-      lumps2El.append( el )
+      browser2El.append( el )
 
       el.addEventListener( 'click', () => {
         previewEl.innerHTML = ''
@@ -162,5 +177,63 @@ document.addEventListener( 'DOMContentLoaded', async () => {
         previewEl.appendChild( canvas )
       } )
     } )
+  }
+
+  const showLevelElement: LevelViewSettings = {
+    grid: true,
+    blockmap: false,
+    linedefs: true,
+    nodes: false,
+    reject: false,
+    sectors: true,
+    segs: false,
+    sidedefs: true,
+    ssectors: false,
+    things: true,
+    vertexes: true
+  }
+
+  const showLevelBrowser = ( om: DoomObjectModel ) => {
+    om.levels.forEach( level => {
+      const el = document.createElement( 'div' )
+      el.classList.add( 'browser-select' )
+      el.classList.add( 'browser-select-2' )
+      el.innerText = level.name
+
+      browser2El.append( el )
+
+      el.addEventListener( 'click', () => {
+        const draw = () => {
+          browser3El.innerHTML = ''
+
+          Object.keys( showLevelElement ).forEach( key => {
+            const div = document.createElement( 'div' )
+            const label = document.createElement( 'label' )
+            const text = document.createTextNode( ` ${ key }` )
+            const check = document.createElement( 'input' )
+            check.type = 'checkbox'
+            check.checked = showLevelElement[ key ]
+            check.onchange = () => {
+              showLevelElement[ key ] = !showLevelElement[ key ]
+              draw()
+            }
+
+            label.appendChild( check )
+            label.appendChild( text )
+
+            div.appendChild( label )
+
+            browser3El.appendChild( div )
+          } )
+
+          previewEl.innerHTML = ''
+          const svg = levelToSvg( level, showLevelElement )
+          svg.classList.add( 'fit' )
+          previewEl.appendChild( svg )
+        }
+
+        draw()
+      } )
+    })
   }
 })

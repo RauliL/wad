@@ -23,16 +23,16 @@ body, .wad-viewer {
   height: 100%;
   overflow: hidden;
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto auto 1fr;
 }
 
-.lumps, .lumps2 {
+.browser {
   height: 100%;
   overflow-y: auto;
-  padding-right: 2rem;
+  padding-right: 1.5rem;
 }
 
-.lump, .lump2 {
+.browser-select {
   cursor: pointer;
 }
 
@@ -48,12 +48,19 @@ body, .wad-viewer {
   margin-bottom: 1rem;
 }
 
-canvas.fit {
+.preview .fit {
   display: block;
   margin: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/*
+  The DOOM coordinates are inverted on the y axis
+*/
+.preview svg.fit {
+  transform: scaleY( -1 );
 }
 
 .selected {
