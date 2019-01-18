@@ -152,8 +152,6 @@ const decorateThings = ( om: DoomObjectModel, svg: SVGSVGElement ) => {
     const cx = parseFloat( thing.getAttribute( 'cx' )! )
     const cy = parseFloat( thing.getAttribute( 'cy' )! )
     const sprite = om.sprites[ spriteName ]
-    //const x = cx - sprite.width / 2
-    //const y = cy
     const x = cx - sprite.left
     const y = cy - ( sprite.height - sprite.top )
 
