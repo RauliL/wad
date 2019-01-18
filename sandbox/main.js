@@ -1,6 +1,1000 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const rawThingData = require("./thing-data.json");
+exports.thingData = rawThingData;
+
+},{"./thing-data.json":2}],2:[function(require,module,exports){
+module.exports=[
+    {
+        "type": 1,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "+",
+        "description": "Player 1 start"
+    },
+    {
+        "type": 2,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "+",
+        "description": "Player 2 start"
+    },
+    {
+        "type": 3,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "+",
+        "description": "Player 3 start"
+    },
+    {
+        "type": 4,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "+",
+        "description": "Player 4 start"
+    },
+    {
+        "type": 5,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "BKEY",
+        "sequence": "AB",
+        "description": "Blue keycard"
+    },
+    {
+        "type": 6,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "YKEY",
+        "sequence": "AB",
+        "description": "Yellow keycard"
+    },
+    {
+        "type": 7,
+        "version": "retail",
+        "radius": 128,
+        "spritePrefix": "SPID",
+        "sequence": "+",
+        "description": "Spider Mastermind"
+    },
+    {
+        "type": 8,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "BPAK",
+        "sequence": "A",
+        "description": "Backpack"
+    },
+    {
+        "type": 9,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SPOS",
+        "sequence": "+",
+        "description": "Former Human Sergeant"
+    },
+    {
+        "type": 10,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "W",
+        "description": "Bloody mess"
+    },
+    {
+        "type": 11,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "",
+        "sequence": "",
+        "description": "Deathmatch start"
+    },
+    {
+        "type": 12,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "W",
+        "description": "Bloody mess"
+    },
+    {
+        "type": 13,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "RKEY",
+        "sequence": "AB",
+        "description": "Red keycard"
+    },
+    {
+        "type": 14,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "",
+        "sequence": "",
+        "description": "Teleport landing"
+    },
+    {
+        "type": 15,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "PLAY",
+        "sequence": "N",
+        "description": "Dead player"
+    },
+    {
+        "type": 16,
+        "version": "retail",
+        "radius": 40,
+        "spritePrefix": "CYBR",
+        "sequence": "+",
+        "description": "Cyberdemon"
+    },
+    {
+        "type": 17,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "CELP",
+        "sequence": "A",
+        "description": "Cell charge pack"
+    },
+    {
+        "type": 18,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "POSS",
+        "sequence": "L",
+        "description": "Dead former human"
+    },
+    {
+        "type": 19,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SPOS",
+        "sequence": "L",
+        "description": "Dead former sergeant"
+    },
+    {
+        "type": 20,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "TROO",
+        "sequence": "M",
+        "description": "Dead imp"
+    },
+    {
+        "type": 21,
+        "version": "shareware",
+        "radius": 30,
+        "spritePrefix": "SARG",
+        "sequence": "N",
+        "description": "Dead demon"
+    },
+    {
+        "type": 22,
+        "version": "retail",
+        "radius": 31,
+        "spritePrefix": "HEAD",
+        "sequence": "L",
+        "description": "Dead cacodemon"
+    },
+    {
+        "type": 23,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "SKUL",
+        "sequence": "K",
+        "description": "Dead lost soul (invisible)"
+    },
+    {
+        "type": 24,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "POL5",
+        "sequence": "A",
+        "description": "Pool of blood and flesh"
+    },
+    {
+        "type": 25,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "POL1",
+        "sequence": "A",
+        "description": "Impaled human"
+    },
+    {
+        "type": 26,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "POL6",
+        "sequence": "AB",
+        "description": "Twitching impaled human"
+    },
+    {
+        "type": 27,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "POL4",
+        "sequence": "A",
+        "description": "Skull on a pole"
+    },
+    {
+        "type": 28,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "POL2",
+        "sequence": "A",
+        "description": "Five skulls \"shish kebab"
+    },
+    {
+        "type": 29,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "POL3",
+        "sequence": "AB",
+        "description": "Pile of skulls and candles"
+    },
+    {
+        "type": 30,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "COL1",
+        "sequence": "A",
+        "description": "Tall green pillar"
+    },
+    {
+        "type": 31,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "COL2",
+        "sequence": "A",
+        "description": "Short green pillar"
+    },
+    {
+        "type": 32,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "COL3",
+        "sequence": "A",
+        "description": "Tall red pillar"
+    },
+    {
+        "type": 33,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "COL4",
+        "sequence": "A",
+        "description": "Short red pillar"
+    },
+    {
+        "type": 34,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "CAND",
+        "sequence": "A",
+        "description": "Candle"
+    },
+    {
+        "type": 35,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "CBRA",
+        "sequence": "A",
+        "description": "Candelabra"
+    },
+    {
+        "type": 36,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "COL5",
+        "sequence": "AB",
+        "description": "Short green pillar with beating heart"
+    },
+    {
+        "type": 37,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "COL6",
+        "sequence": "A",
+        "description": "Short red pillar with skull"
+    },
+    {
+        "type": 38,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "RSKU",
+        "sequence": "AB",
+        "description": "Red skull key"
+    },
+    {
+        "type": 39,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "YSKU",
+        "sequence": "AB",
+        "description": "Yellow skull key"
+    },
+    {
+        "type": 40,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "BSKU",
+        "sequence": "AB",
+        "description": "Blue skull key"
+    },
+    {
+        "type": 41,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "CEYE",
+        "sequence": "ABCB",
+        "description": "Evil eye"
+    },
+    {
+        "type": 42,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "FSKU",
+        "sequence": "ABC",
+        "description": "Floating skull"
+    },
+    {
+        "type": 43,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "TRE1",
+        "sequence": "A",
+        "description": "Burnt tree"
+    },
+    {
+        "type": 44,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "TBLU",
+        "sequence": "ABCD",
+        "description": "Tall blue firestick"
+    },
+    {
+        "type": 45,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "TGRN",
+        "sequence": "ABCD",
+        "description": "Tall green firestick"
+    },
+    {
+        "type": 46,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "TRED",
+        "sequence": "ABCD",
+        "description": "Tall red firestick"
+    },
+    {
+        "type": 47,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "SMIT",
+        "sequence": "A",
+        "description": "Stalagmite"
+    },
+    {
+        "type": 48,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "ELEC",
+        "sequence": "A",
+        "description": "Tall techno pillar"
+    },
+    {
+        "type": 49,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR1",
+        "sequence": "ABCB",
+        "description": "Hanging victim, twitching"
+    },
+    {
+        "type": 50,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR2",
+        "sequence": "A",
+        "description": "Hanging victim, arms out"
+    },
+    {
+        "type": 51,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR3",
+        "sequence": "A",
+        "description": "Hanging victim, one-legged"
+    },
+    {
+        "type": 52,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR4",
+        "sequence": "A",
+        "description": "Hanging pair of legs"
+    },
+    {
+        "type": 53,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR5",
+        "sequence": "A",
+        "description": "Hanging leg"
+    },
+    {
+        "type": 54,
+        "version": "retail",
+        "radius": 32,
+        "spritePrefix": "TRE2",
+        "sequence": "A",
+        "description": "Large brown tree"
+    },
+    {
+        "type": 55,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "SMBT",
+        "sequence": "ABCD",
+        "description": "Short blue firestick"
+    },
+    {
+        "type": 56,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "SMGT",
+        "sequence": "ABCD",
+        "description": "Short green firestick"
+    },
+    {
+        "type": 57,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "SMRT",
+        "sequence": "ABCD",
+        "description": "Short red firestick"
+    },
+    {
+        "type": 58,
+        "version": "shareware",
+        "radius": 30,
+        "spritePrefix": "SARG",
+        "sequence": "+",
+        "description": "Spectre"
+    },
+    {
+        "type": 59,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR2",
+        "sequence": "A",
+        "description": "Hanging victim, arms out"
+    },
+    {
+        "type": 60,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR4",
+        "sequence": "A",
+        "description": "Hanging pair of legs"
+    },
+    {
+        "type": 61,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR3",
+        "sequence": "A",
+        "description": "Hanging victim, one-legged"
+    },
+    {
+        "type": 62,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR5",
+        "sequence": "A",
+        "description": "Hanging leg"
+    },
+    {
+        "type": 63,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "GOR1",
+        "sequence": "ABCB",
+        "description": "Hanging victim, twitching"
+    },
+    {
+        "type": 64,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "VILE",
+        "sequence": "+",
+        "description": "Arch-Vile"
+    },
+    {
+        "type": 65,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "CPOS",
+        "sequence": "+",
+        "description": "Chaingunner"
+    },
+    {
+        "type": 66,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "SKEL",
+        "sequence": "+",
+        "description": "Revenant"
+    },
+    {
+        "type": 67,
+        "version": "doom2",
+        "radius": 48,
+        "spritePrefix": "FATT",
+        "sequence": "+",
+        "description": "Mancubus"
+    },
+    {
+        "type": 68,
+        "version": "doom2",
+        "radius": 64,
+        "spritePrefix": "BSPI",
+        "sequence": "+",
+        "description": "Arachnotron"
+    },
+    {
+        "type": 69,
+        "version": "doom2",
+        "radius": 24,
+        "spritePrefix": "BOS2",
+        "sequence": "+",
+        "description": "Hell Knight"
+    },
+    {
+        "type": 70,
+        "version": "doom2",
+        "radius": 10,
+        "spritePrefix": "FCAN",
+        "sequence": "ABC",
+        "description": "Burning barrel"
+    },
+    {
+        "type": 71,
+        "version": "doom2",
+        "radius": 31,
+        "spritePrefix": "PAIN",
+        "sequence": "+",
+        "description": "Pain Elemental"
+    },
+    {
+        "type": 72,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "KEEN",
+        "sequence": "A+",
+        "description": "Commander Keen"
+    },
+    {
+        "type": 73,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "HDB1",
+        "sequence": "A",
+        "description": "Hanging victim, guts removed"
+    },
+    {
+        "type": 74,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "HDB2",
+        "sequence": "A",
+        "description": "Hanging victim, guts and brain removed"
+    },
+    {
+        "type": 75,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "HDB3",
+        "sequence": "A",
+        "description": "Hanging torso, looking down"
+    },
+    {
+        "type": 76,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "HDB4",
+        "sequence": "A",
+        "description": "Hanging torso, open skull"
+    },
+    {
+        "type": 77,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "HDB5",
+        "sequence": "A",
+        "description": "Hanging torso, looking up"
+    },
+    {
+        "type": 78,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "HDB6",
+        "sequence": "A",
+        "description": "Hanging torso, brain removed"
+    },
+    {
+        "type": 79,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "POB1",
+        "sequence": "A",
+        "description": "Pool of blood"
+    },
+    {
+        "type": 80,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "POB2",
+        "sequence": "A",
+        "description": "Pool of blood"
+    },
+    {
+        "type": 81,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "BRS1",
+        "sequence": "A",
+        "description": "Pool of brains"
+    },
+    {
+        "type": 82,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "SGN2",
+        "sequence": "A",
+        "description": "Super shotgun"
+    },
+    {
+        "type": 83,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "MEGA",
+        "sequence": "ABCD",
+        "description": "Megasphere"
+    },
+    {
+        "type": 84,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "SSWV",
+        "sequence": "+",
+        "description": "Wolfenstein SS"
+    },
+    {
+        "type": 85,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "TLMP",
+        "sequence": "ABCD",
+        "description": "Tall techno floor lamp"
+    },
+    {
+        "type": 86,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "TLP2",
+        "sequence": "ABCD",
+        "description": "Short techno floor lamp"
+    },
+    {
+        "type": 87,
+        "version": "doom2",
+        "radius": 0,
+        "spritePrefix": "",
+        "sequence": "",
+        "description": "Spawn spot"
+    },
+    {
+        "type": 88,
+        "version": "doom2",
+        "radius": 16,
+        "spritePrefix": "BBRN",
+        "sequence": "+",
+        "description": "Boss Brain"
+    },
+    {
+        "type": 89,
+        "version": "doom2",
+        "radius": 20,
+        "spritePrefix": "",
+        "sequence": "",
+        "description": "Spawn shooter"
+    },
+    {
+        "type": 2001,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SHOT",
+        "sequence": "A",
+        "description": "Shotgun"
+    },
+    {
+        "type": 2002,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "MGUN",
+        "sequence": "A",
+        "description": "Chaingun"
+    },
+    {
+        "type": 2003,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "LAUN",
+        "sequence": "A",
+        "description": "Rocket launcher"
+    },
+    {
+        "type": 2004,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "PLAS",
+        "sequence": "A",
+        "description": "Plasma rifle"
+    },
+    {
+        "type": 2005,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "CSAW",
+        "sequence": "A",
+        "description": "Chainsaw"
+    },
+    {
+        "type": 2006,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "BFUG",
+        "sequence": "A",
+        "description": "BFG 9000"
+    },
+    {
+        "type": 2007,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "CLIP",
+        "sequence": "A",
+        "description": "Ammo clip"
+    },
+    {
+        "type": 2008,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SHEL",
+        "sequence": "A",
+        "description": "Shotgun shells"
+    },
+    {
+        "type": 2010,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "ROCK",
+        "sequence": "A",
+        "description": "Rocket"
+    },
+    {
+        "type": 2011,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "STIM",
+        "sequence": "A",
+        "description": "Stimpack"
+    },
+    {
+        "type": 2012,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "MEDI",
+        "sequence": "A",
+        "description": "Medikit"
+    },
+    {
+        "type": 2013,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SOUL",
+        "sequence": "ABCDCB",
+        "description": "Soul sphere"
+    },
+    {
+        "type": 2014,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "BON1",
+        "sequence": "ABCDCB",
+        "description": "Health potion"
+    },
+    {
+        "type": 2015,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "BON2",
+        "sequence": "ABCDCB",
+        "description": "Spiritual armor"
+    },
+    {
+        "type": 2018,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "ARM1",
+        "sequence": "AB",
+        "description": "Green armor"
+    },
+    {
+        "type": 2019,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "ARM2",
+        "sequence": "AB",
+        "description": "Blue armor"
+    },
+    {
+        "type": 2022,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "PINV",
+        "sequence": "ABCD",
+        "description": "Invulnerability"
+    },
+    {
+        "type": 2023,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "PSTR",
+        "sequence": "A",
+        "description": "Berserk"
+    },
+    {
+        "type": 2024,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "PINS",
+        "sequence": "ABCD",
+        "description": "Invisibility"
+    },
+    {
+        "type": 2025,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SUIT",
+        "sequence": "A",
+        "description": "Radiation suit"
+    },
+    {
+        "type": 2026,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "PMAP",
+        "sequence": "ABCDCB",
+        "description": "Computer map"
+    },
+    {
+        "type": 2028,
+        "version": "shareware",
+        "radius": 16,
+        "spritePrefix": "COLU",
+        "sequence": "A",
+        "description": "Floor lamp"
+    },
+    {
+        "type": 2035,
+        "version": "shareware",
+        "radius": 10,
+        "spritePrefix": "BAR1",
+        "sequence": "AB+",
+        "description": "Barrel"
+    },
+    {
+        "type": 2045,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "PVIS",
+        "sequence": "AB",
+        "description": "Light amplification visor"
+    },
+    {
+        "type": 2046,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "BROK",
+        "sequence": "A",
+        "description": "Box of rockets"
+    },
+    {
+        "type": 2047,
+        "version": "retail",
+        "radius": 20,
+        "spritePrefix": "CELL",
+        "sequence": "A",
+        "description": "Cell charge"
+    },
+    {
+        "type": 2048,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "AMMO",
+        "sequence": "A",
+        "description": "Box of ammo"
+    },
+    {
+        "type": 2049,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "SBOX",
+        "sequence": "A",
+        "description": "Box of shells"
+    },
+    {
+        "type": 3001,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "TROO",
+        "sequence": "+",
+        "description": "Imp"
+    },
+    {
+        "type": 3002,
+        "version": "shareware",
+        "radius": 30,
+        "spritePrefix": "SARG",
+        "sequence": "+",
+        "description": "Demon"
+    },
+    {
+        "type": 3003,
+        "version": "shareware",
+        "radius": 24,
+        "spritePrefix": "BOSS",
+        "sequence": "+",
+        "description": "Baron of Hell"
+    },
+    {
+        "type": 3004,
+        "version": "shareware",
+        "radius": 20,
+        "spritePrefix": "POSS",
+        "sequence": "+",
+        "description": "Former Human Trooper"
+    },
+    {
+        "type": 3005,
+        "version": "retail",
+        "radius": 31,
+        "spritePrefix": "HEAD",
+        "sequence": "+",
+        "description": "Cacodemon"
+    },
+    {
+        "type": 3006,
+        "version": "retail",
+        "radius": 16,
+        "spritePrefix": "SKUL",
+        "sequence": "+",
+        "description": "Lost Soul"
+    }
+]
+
+},{}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const things_1 = require("./readers/things");
 const linedefs_1 = require("./readers/linedefs");
 const sidedefs_1 = require("./readers/sidedefs");
@@ -30,7 +1024,7 @@ exports.readLumpData = (lumpData, lumpType = 'raw') => {
     return reader(new DataView(lumpData.buffer));
 };
 
-},{"./readers/blockmap":2,"./readers/colormap":3,"./readers/flat":4,"./readers/linedefs":5,"./readers/nodes":6,"./readers/picture":7,"./readers/playpal":8,"./readers/pnames":9,"./readers/raw":10,"./readers/sectors":11,"./readers/segs":12,"./readers/sidedefs":13,"./readers/ssectors":14,"./readers/texture":15,"./readers/things":16,"./readers/vertexes":17}],2:[function(require,module,exports){
+},{"./readers/blockmap":4,"./readers/colormap":5,"./readers/flat":6,"./readers/linedefs":7,"./readers/nodes":8,"./readers/picture":9,"./readers/playpal":10,"./readers/pnames":11,"./readers/raw":12,"./readers/sectors":13,"./readers/segs":14,"./readers/sidedefs":15,"./readers/ssectors":16,"./readers/texture":17,"./readers/things":18,"./readers/vertexes":19}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -64,7 +1058,7 @@ exports.blockmap = (view) => {
     return { x, y, columns, rows, blocks };
 };
 
-},{"../../utils":27}],3:[function(require,module,exports){
+},{"../../utils":30}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -84,7 +1078,7 @@ exports.colormap = (view) => {
     return maps;
 };
 
-},{"../../utils":27}],4:[function(require,module,exports){
+},{"../../utils":30}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -99,7 +1093,7 @@ exports.flat = (view) => {
     return { width, height, data };
 };
 
-},{"../../utils":27}],5:[function(require,module,exports){
+},{"../../utils":30}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -137,7 +1131,7 @@ exports.linedefs = (view) => {
     return linedefs;
 };
 
-},{"../../utils":27}],6:[function(require,module,exports){
+},{"../../utils":30}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -174,7 +1168,7 @@ exports.nodes = (view) => {
     return nodes;
 };
 
-},{"../../utils":27}],7:[function(require,module,exports){
+},{"../../utils":30}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -222,7 +1216,7 @@ exports.picture = (view) => {
     };
 };
 
-},{"../../utils":27}],8:[function(require,module,exports){
+},{"../../utils":30}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -249,7 +1243,7 @@ exports.playpal = (view) => {
     return palettes;
 };
 
-},{"../../utils":27}],9:[function(require,module,exports){
+},{"../../utils":30}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -264,12 +1258,12 @@ exports.pnames = (view) => {
     return pnames;
 };
 
-},{"../../utils":27}],10:[function(require,module,exports){
+},{"../../utils":30}],12:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.raw = (view) => view;
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -295,7 +1289,7 @@ exports.sectors = (view) => {
     return sectors;
 };
 
-},{"../../utils":27}],12:[function(require,module,exports){
+},{"../../utils":30}],14:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -320,7 +1314,7 @@ exports.segs = (view) => {
     return segs;
 };
 
-},{"../../utils":27}],13:[function(require,module,exports){
+},{"../../utils":30}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -345,7 +1339,7 @@ exports.sidedefs = (view) => {
     return sidedefs;
 };
 
-},{"../../utils":27}],14:[function(require,module,exports){
+},{"../../utils":30}],16:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -364,7 +1358,7 @@ exports.ssectors = (view) => {
     return ssectors;
 };
 
-},{"../../utils":27}],15:[function(require,module,exports){
+},{"../../utils":30}],17:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -397,7 +1391,7 @@ exports.texture = (view) => {
     return textures;
 };
 
-},{"../../utils":27}],16:[function(require,module,exports){
+},{"../../utils":30}],18:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -428,7 +1422,7 @@ exports.things = (view) => {
     return things;
 };
 
-},{"../../utils":27}],17:[function(require,module,exports){
+},{"../../utils":30}],19:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -447,7 +1441,7 @@ exports.vertexes = (view) => {
     return vertexes;
 };
 
-},{"../../utils":27}],18:[function(require,module,exports){
+},{"../../utils":30}],20:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const read_lump_data_1 = require("../lumps/read-lump-data");
@@ -652,7 +1646,7 @@ exports.createObjectModel = (wad, options) => {
     return objectModel;
 };
 
-},{"../lumps/read-lump-data":1}],19:[function(require,module,exports){
+},{"../lumps/read-lump-data":3}],21:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const get_color_1 = require("./get-color");
@@ -677,7 +1671,7 @@ exports.colormapToCanvas = (colormap, palette, block = 16) => {
     return canvas;
 };
 
-},{"./get-color":20}],20:[function(require,module,exports){
+},{"./get-color":22}],22:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getColor = (palette, i) => {
@@ -689,7 +1683,7 @@ exports.getColor = (palette, i) => {
     return color;
 };
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const get_color_1 = require("./get-color");
@@ -715,7 +1709,7 @@ exports.imageToCanvas = (image, palette, block = 4) => {
     return canvas;
 };
 
-},{"./get-color":20}],22:[function(require,module,exports){
+},{"./get-color":22}],24:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const read_wad_1 = require("../wad/read/read-wad");
@@ -725,6 +1719,7 @@ const object_model_1 = require("../object-model");
 const image_to_canvas_1 = require("./image-to-canvas");
 const texture_to_canvas_1 = require("./texture-to-canvas");
 const level_to_svg_1 = require("./level-to-svg");
+const svg_events_1 = require("./svg-events");
 const exclude = [
     'type', 'demos', 'dmxgus', 'dmxgusc', 'endoom', 'genmidi', 'music', 'sounds'
 ];
@@ -745,7 +1740,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const buffer = e.target['result'];
             const wad = read_wad_1.readWad(new Uint8Array(buffer));
             const om = object_model_1.createObjectModel(wad);
-            console.log(om);
             const names = Object.keys(om).filter(n => !exclude.includes(n)).filter(n => om[n]);
             names.forEach(name => {
                 const browserSelectEl = document.createElement('div');
@@ -867,6 +1861,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             el.addEventListener('click', () => {
                 const draw = () => {
                     browser3El.innerHTML = '';
+                    previewEl.innerHTML = '';
+                    const svg = level_to_svg_1.levelToSvg(om, level, showLevelElement);
                     Object.keys(showLevelElement).forEach(key => {
                         const div = document.createElement('div');
                         const label = document.createElement('label');
@@ -875,19 +1871,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                         check.type = 'checkbox';
                         check.checked = showLevelElement[key];
                         check.onchange = () => {
+                            const { x, y, width, height } = svg.viewBox.baseVal;
                             showLevelElement[key] = !showLevelElement[key];
-                            draw();
+                            const newSvg = draw();
+                            Object.assign(newSvg.viewBox.baseVal, { x, y, width, height });
                         };
                         label.appendChild(check);
                         label.appendChild(text);
                         div.appendChild(label);
                         browser3El.appendChild(div);
                     });
-                    previewEl.innerHTML = '';
-                    const svg = level_to_svg_1.levelToSvg(level, showLevelElement);
                     svg.classList.add('fit');
-                    zoomSvg(svg);
-                    panSvg(svg);
+                    svg_events_1.zoomSvg(svg);
+                    svg_events_1.panSvg(svg);
                     previewEl.appendChild(svg);
                     const resetZoomButton = document.createElement('button');
                     resetZoomButton.type = 'button';
@@ -901,13 +1897,187 @@ document.addEventListener('DOMContentLoaded', async () => {
                         Object.assign(svg.viewBox.baseVal, { x, y, width, height });
                     };
                     browser3El.appendChild(resetZoomButton);
+                    return svg;
                 };
                 draw();
             });
         });
     };
 });
-const zoomSvg = (svg) => svg.onwheel = e => {
+
+},{"../object-model":20,"../wad/read/read-wad":34,"./colormap-to-canvas":21,"./image-to-canvas":23,"./level-to-svg":25,"./palette-to-canvas":26,"./svg-events":27,"./texture-to-canvas":28}],25:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const util_1 = require("./util");
+const data_1 = require("../data");
+const image_to_canvas_1 = require("./image-to-canvas");
+exports.levelToSvg = (om, level, settings) => {
+    let minX = Number.MAX_SAFE_INTEGER;
+    let minY = Number.MAX_SAFE_INTEGER;
+    let maxX = Number.MIN_SAFE_INTEGER;
+    let maxY = Number.MIN_SAFE_INTEGER;
+    level.vertexes.forEach(({ x, y }) => {
+        if (x < minX)
+            minX = x;
+        if (x > maxX)
+            maxX = x;
+        if (y < minY)
+            minY = y;
+        if (y > maxY)
+            maxY = y;
+    });
+    const width = maxX - minX;
+    const height = maxY - minY;
+    const div = document.createElement('div');
+    const svgText = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="${minX - 8} ${minY - 8} ${width + 16} ${height + 16}">
+      ${settings.grid ? grid : ''}
+      ${settings.vertexes ? vertexesToSvg(level.vertexes) : ''}
+      ${settings.linedefs ? linedefsToSvg(level.linedefs, level.vertexes) : ''}
+      ${settings.sidedefs ? sidedefsToSvg(level.linedefs, level.sidedefs, level.vertexes) : ''}
+      ${settings.things ? thingsToSvg(level.things) : ''}
+      ${settings.sectors ? sectorsToSvg(level) : ''}
+    </svg>
+  `;
+    div.innerHTML = svgText;
+    const svg = div.firstElementChild;
+    Object.assign(svg.dataset, { minX, minY, maxX, maxY, width, height });
+    decorateThings(om, svg);
+    return svg;
+};
+const grid = `
+  <defs>
+    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <rect width="64" height="64" fill="url(#smallGrid)"/>
+      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="gray" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect x="-32768" y ="-32768" width="65535" height="65535" fill="url(#grid)" />
+`;
+const vertexesToSvg = (vertexes) => vertexes.map(({ x, y }) => `<circle class="vertex" cx="${x}" cy="${y}" r="${2}"></circle>`).join('');
+const linedefsToSvg = (linedefs, vertexes) => linedefs.map(linedef => {
+    const { startVertex, endVertex } = linedef;
+    const start = vertexes[startVertex];
+    const end = vertexes[endVertex];
+    return `<line class="linedef" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="black"></line>`;
+}).join('');
+const thingsToSvg = (things) => things.map(({ x, y, type }) => {
+    return `<circle class="thing" data-type="${type}" cx="${x}" cy="${y}" r="${32}" fill="rgba( 127, 127, 127, 0.5 )"></circle>`;
+}).join('');
+const sidedefsToSvg = (linedefs, sidedefs, vertexes) => {
+    const length = 8;
+    let svg = '';
+    linedefs.forEach(linedef => {
+        const start = vertexes[linedef.startVertex];
+        const end = vertexes[linedef.endVertex];
+        const left = sidedefs[linedef.leftSidedef];
+        const right = sidedefs[linedef.rightSidedef];
+        const mid = util_1.midPoint(start, end);
+        const r = util_1.rads(start, end);
+        if (left) {
+            const newR = r + Math.PI / 2;
+            const newEnd = util_1.lineEnd(mid, newR, length);
+            svg += `<line class="sidedef left" x1="${mid.x}" y1="${mid.y}" x2="${newEnd.x}" y2="${newEnd.y}" stroke="red"></line>`;
+        }
+        if (right) {
+            const newR = r - Math.PI / 2;
+            const newEnd = util_1.lineEnd(mid, newR, length);
+            svg += `<line class="sidedef right" x1="${mid.x}" y1="${mid.y}" x2="${newEnd.x}" y2="${newEnd.y}" stroke="blue"></line>`;
+        }
+    });
+    return svg;
+};
+const sectorsToSvg = (level) => {
+    const { vertexes, linedefs, sidedefs, sectors } = level;
+    const hueStep = 360 / (sectors.length + 1);
+    let svg = '';
+    sectors.forEach((_sector, s) => {
+        const hue = s * hueStep;
+        linedefs.forEach(linedef => {
+            const left = sidedefs[linedef.leftSidedef];
+            const right = sidedefs[linedef.rightSidedef];
+            if ((left && left.sector === s) || (right && right.sector === s)) {
+                const { startVertex, endVertex } = linedef;
+                const start = vertexes[startVertex];
+                const end = vertexes[endVertex];
+                svg += `<line class="sector" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="hsla(${hue},100%,50%,0.5)"></line>`;
+            }
+        });
+    });
+    return svg;
+};
+const decorateThings = (om, svg) => {
+    const things = svg.querySelectorAll('.thing');
+    things.forEach(thing => {
+        const type = parseInt(thing.dataset.type);
+        const data = data_1.thingData.find(t => t.type === type);
+        if (!data)
+            return;
+        if (data.spritePrefix === '')
+            return;
+        let spriteName = data.spritePrefix + 'A0';
+        if (!(spriteName in om.sprites))
+            spriteName = data.spritePrefix + 'A1';
+        if (!(spriteName in om.sprites))
+            return;
+        const cx = parseFloat(thing.getAttribute('cx'));
+        const cy = parseFloat(thing.getAttribute('cy'));
+        const sprite = om.sprites[spriteName];
+        //const x = cx - sprite.width / 2
+        //const y = cy
+        const x = cx - sprite.left;
+        const y = cy - (sprite.height - sprite.top);
+        const canvas = image_to_canvas_1.imageToCanvas(sprite, om.playpal[0], 1);
+        const flippedCanvas = document.createElement('canvas');
+        const context = flippedCanvas.getContext('2d');
+        flippedCanvas.width = canvas.width;
+        flippedCanvas.height = canvas.height;
+        context.translate(0, canvas.height);
+        context.scale(1, -1);
+        context.drawImage(canvas, 0, 0);
+        const url = flippedCanvas.toDataURL();
+        const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        image.classList.add('thing');
+        image.dataset.type = String(type);
+        image.setAttribute('width', `${sprite.width}`);
+        image.setAttribute('height', `${sprite.height}`);
+        image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', url);
+        image.setAttribute('x', `${x}`);
+        image.setAttribute('y', `${y}`);
+        thing.after(image);
+        thing.remove();
+    });
+};
+
+},{"../data":1,"./image-to-canvas":23,"./util":29}],26:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const get_color_1 = require("./get-color");
+exports.paletteToCanvas = (palette, block = 16) => {
+    const canvas = document.createElement('canvas');
+    const size = block * 16;
+    canvas.width = size;
+    canvas.height = size;
+    const context = canvas.getContext('2d');
+    for (let y = 0; y < 16; y++) {
+        for (let x = 0; x < 16; x++) {
+            const i = y * 16 + x;
+            const color = get_color_1.getColor(palette, i);
+            context.fillStyle = color;
+            context.fillRect(x * block, y * block, block, block);
+        }
+    }
+    return canvas;
+};
+
+},{"./get-color":22}],27:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.zoomSvg = (svg) => svg.onwheel = e => {
     const { width: clientWidth, height: clientHeight } = svg.getBoundingClientRect();
     let { x, y, width, height } = svg.viewBox.baseVal;
     let { layerX, layerY, deltaY } = e;
@@ -929,7 +2099,7 @@ const zoomSvg = (svg) => svg.onwheel = e => {
     y += layerY;
     Object.assign(svg.viewBox.baseVal, { x, y, width, height });
 };
-const panSvg = (svg) => {
+exports.panSvg = (svg) => {
     let lastPosition = { x: 0, y: 0 };
     let isDown;
     const pointFromEvent = e => {
@@ -979,129 +2149,7 @@ const panSvg = (svg) => {
     }
 };
 
-},{"../object-model":18,"../wad/read/read-wad":31,"./colormap-to-canvas":19,"./image-to-canvas":21,"./level-to-svg":23,"./palette-to-canvas":24,"./texture-to-canvas":25}],23:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const util_1 = require("./util");
-exports.levelToSvg = (level, settings) => {
-    let minX = Number.MAX_SAFE_INTEGER;
-    let minY = Number.MAX_SAFE_INTEGER;
-    let maxX = Number.MIN_SAFE_INTEGER;
-    let maxY = Number.MIN_SAFE_INTEGER;
-    level.vertexes.forEach(({ x, y }) => {
-        if (x < minX)
-            minX = x;
-        if (x > maxX)
-            maxX = x;
-        if (y < minY)
-            minY = y;
-        if (y > maxY)
-            maxY = y;
-    });
-    const width = maxX - minX;
-    const height = maxY - minY;
-    const div = document.createElement('div');
-    const svgText = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="${minX - 8} ${minY - 8} ${width + 16} ${height + 16}">
-      ${settings.grid ? grid : ''}
-      ${settings.vertexes ? vertexesToSvg(level.vertexes) : ''}
-      ${settings.linedefs ? linedefsToSvg(level.linedefs, level.vertexes) : ''}
-      ${settings.sidedefs ? sidedefsToSvg(level.linedefs, level.sidedefs, level.vertexes) : ''}
-      ${settings.things ? thingsToSvg(level.things) : ''}
-      ${settings.sectors ? sectorsToSvg(level) : ''}
-    </svg>
-  `;
-    div.innerHTML = svgText;
-    const svg = div.firstElementChild;
-    Object.assign(svg.dataset, { minX, minY, maxX, maxY, width, height });
-    return svg;
-};
-const grid = `
-  <defs>
-    <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
-    </pattern>
-    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
-      <rect width="64" height="64" fill="url(#smallGrid)"/>
-      <path d="M 64 0 L 0 0 0 64" fill="none" stroke="gray" stroke-width="1"/>
-    </pattern>
-  </defs>
-
-  <rect x="-32768" y ="-32768" width="65535" height="65535" fill="url(#grid)" />
-`;
-const vertexesToSvg = (vertexes) => vertexes.map(({ x, y }) => `<circle class="vertex" cx="${x}" cy="${y}" r="${2}"></circle>`).join('');
-const linedefsToSvg = (linedefs, vertexes) => linedefs.map(linedef => {
-    const { startVertex, endVertex } = linedef;
-    const start = vertexes[startVertex];
-    const end = vertexes[endVertex];
-    return `<line class="linedef" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="black"></line>`;
-}).join('');
-const thingsToSvg = (things) => things.map(({ x, y }) => `<circle class="thing" cx="${x}" cy="${y}" r="${32}" fill="rgba( 127, 127, 127, 0.5 )"></circle>`).join('');
-const sidedefsToSvg = (linedefs, sidedefs, vertexes) => {
-    const length = 8;
-    let svg = '';
-    linedefs.forEach(linedef => {
-        const start = vertexes[linedef.startVertex];
-        const end = vertexes[linedef.endVertex];
-        const left = sidedefs[linedef.leftSidedef];
-        const right = sidedefs[linedef.rightSidedef];
-        const mid = util_1.midPoint(start, end);
-        const r = util_1.rads(start, end);
-        if (left) {
-            const newR = r + Math.PI / 2;
-            const newEnd = util_1.lineEnd(mid, newR, length);
-            svg += `<line class="sidedef left" x1="${mid.x}" y1="${mid.y}" x2="${newEnd.x}" y2="${newEnd.y}" stroke="red"></line>`;
-        }
-        if (right) {
-            const newR = r - Math.PI / 2;
-            const newEnd = util_1.lineEnd(mid, newR, length);
-            svg += `<line class="sidedef right" x1="${mid.x}" y1="${mid.y}" x2="${newEnd.x}" y2="${newEnd.y}" stroke="blue"></line>`;
-        }
-    });
-    return svg;
-};
-const sectorsToSvg = (level) => {
-    const { vertexes, linedefs, sidedefs, sectors } = level;
-    const hueStep = 360 / (sectors.length + 1);
-    let svg = '';
-    sectors.forEach((_sector, s) => {
-        const hue = s * hueStep;
-        linedefs.forEach(linedef => {
-            const left = sidedefs[linedef.leftSidedef];
-            const right = sidedefs[linedef.rightSidedef];
-            if ((left && left.sector === s) || (right && right.sector === s)) {
-                const { startVertex, endVertex } = linedef;
-                const start = vertexes[startVertex];
-                const end = vertexes[endVertex];
-                svg += `<line class="sector" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="hsla(${hue},100%,50%,0.5)"></line>`;
-            }
-        });
-    });
-    return svg;
-};
-
-},{"./util":26}],24:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const get_color_1 = require("./get-color");
-exports.paletteToCanvas = (palette, block = 16) => {
-    const canvas = document.createElement('canvas');
-    const size = block * 16;
-    canvas.width = size;
-    canvas.height = size;
-    const context = canvas.getContext('2d');
-    for (let y = 0; y < 16; y++) {
-        for (let x = 0; x < 16; x++) {
-            const i = y * 16 + x;
-            const color = get_color_1.getColor(palette, i);
-            context.fillStyle = color;
-            context.fillRect(x * block, y * block, block, block);
-        }
-    }
-    return canvas;
-};
-
-},{"./get-color":20}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const image_to_canvas_1 = require("./image-to-canvas");
@@ -1122,7 +2170,7 @@ exports.textureToCanvas = (texture, pictures, palette, block = 4) => {
     return canvas;
 };
 
-},{"./image-to-canvas":21}],26:[function(require,module,exports){
+},{"./image-to-canvas":23}],29:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.vertexEquals = (a, b) => a.x === b.x && a.y === b.y;
@@ -1143,7 +2191,7 @@ exports.lineEnd = (start, rads, length) => {
     return { x, y };
 };
 
-},{}],27:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readUint8 = (view, offset) => view.getUint8(offset);
@@ -1176,7 +2224,7 @@ exports.ensureStringLength = (str, len) => {
 };
 exports.lumpNameRegex = /[0-9A-Z\[\]_\-\\]+/;
 
-},{}],28:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -1203,7 +2251,7 @@ exports.readLumpInfoTable = (data, header) => {
     return infoTable;
 };
 
-},{"../../utils":27,"./read-wad-header":30}],29:[function(require,module,exports){
+},{"../../utils":30,"./read-wad-header":33}],32:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readLump = (wadData, info) => {
@@ -1212,7 +2260,7 @@ exports.readLump = (wadData, info) => {
     return { name, data };
 };
 
-},{}],30:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
@@ -1228,7 +2276,7 @@ exports.readWadHeader = (data) => {
     };
 };
 
-},{"../../utils":27}],31:[function(require,module,exports){
+},{"../../utils":30}],34:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const read_wad_header_1 = require("./read-wad-header");
@@ -1242,4 +2290,4 @@ exports.readWad = (data) => {
     return { type, lumps };
 };
 
-},{"./read-lump":29,"./read-lump-info":28,"./read-wad-header":30}]},{},[22]);
+},{"./read-lump":32,"./read-lump-info":31,"./read-wad-header":33}]},{},[24]);

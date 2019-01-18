@@ -42,10 +42,10 @@ e1m1.vertexes.forEach( v => console.log( v.x, v.y ) )
 
 ## todo
 
-- test data is megabytes, create a wad that has all lumps needed for testing
-  but isn't huge
 - `writeLumpData`
 - `createWad( doomObjectModel )`
+- test data is megabytes, create a wad that has all lumps needed for testing
+  but isn't huge
 
 ## license
 

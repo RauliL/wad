@@ -1,9 +1,11 @@
-import { Level } from '../object-model/types'
-import { LevelViewSettings, Line } from './types'
+import { Level, DoomObjectModel } from '../object-model/types'
+import { LevelViewSettings } from './types'
 import { Vertex, Linedef, Thing, Sidedef } from '../lumps/types'
-import { midPoint, rads, lineEnd } from './util';
+import { midPoint, rads, lineEnd } from './util'
+import { thingData } from '../data';
+import { imageToCanvas } from './image-to-canvas';
 
-export const levelToSvg = ( level: Level, settings: LevelViewSettings ) => {
+export const levelToSvg = ( om: DoomObjectModel, level: Level, settings: LevelViewSettings ) => {
   let minX = Number.MAX_SAFE_INTEGER
   let minY = Number.MAX_SAFE_INTEGER
   let maxX = Number.MIN_SAFE_INTEGER
@@ -38,6 +40,8 @@ export const levelToSvg = ( level: Level, settings: LevelViewSettings ) => {
 
   Object.assign( svg.dataset, { minX, minY, maxX, maxY, width, height } )
 
+  decorateThings( om, svg )
+
   return svg
 }
 
@@ -70,7 +74,9 @@ const linedefsToSvg = ( linedefs: Linedef[], vertexes: Vertex[] ) =>
   } ).join( '' )
 
 const thingsToSvg = ( things: Thing[] ) =>
-  things.map( ( { x, y } ) => `<circle class="thing" cx="${ x }" cy="${ y }" r="${ 32 }" fill="rgba( 127, 127, 127, 0.5 )"></circle>` ).join( '' )
+  things.map( ( { x, y, type } ) => {
+    return `<circle class="thing" data-type="${ type }" cx="${ x }" cy="${ y }" r="${ 32 }" fill="rgba( 127, 127, 127, 0.5 )"></circle>`
+  }).join( '' )
 
 const sidedefsToSvg = ( linedefs: Linedef[], sidedefs: Sidedef[], vertexes: Vertex[] ) => {
   const length = 8
@@ -125,4 +131,55 @@ const sectorsToSvg = ( level: Level ) => {
   })
 
   return svg
+}
+
+const decorateThings = ( om: DoomObjectModel, svg: SVGSVGElement ) => {
+  const things = <NodeListOf<SVGCircleElement>>svg.querySelectorAll( '.thing' )
+
+  things.forEach( thing => {
+    const type = parseInt( thing.dataset.type! )
+    const data = thingData.find( t => t.type === type )
+
+    if( !data ) return
+    if( data.spritePrefix === '' ) return
+
+    let spriteName = data.spritePrefix + 'A0'
+
+    if ( !( spriteName in om.sprites ) ) spriteName = data.spritePrefix + 'A1'
+
+    if( !( spriteName in om.sprites ) ) return
+
+    const cx = parseFloat( thing.getAttribute( 'cx' )! )
+    const cy = parseFloat( thing.getAttribute( 'cy' )! )
+    const sprite = om.sprites[ spriteName ]
+    //const x = cx - sprite.width / 2
+    //const y = cy
+    const x = cx - sprite.left
+    const y = cy - ( sprite.height - sprite.top )
+
+    const canvas = imageToCanvas( sprite, om.playpal[ 0 ], 1 )
+    const flippedCanvas = document.createElement( 'canvas' )
+    const context = flippedCanvas.getContext( '2d' )!
+
+    flippedCanvas.width = canvas.width
+    flippedCanvas.height = canvas.height
+
+    context.translate( 0, canvas.height )
+    context.scale( 1, -1 )
+    context.drawImage( canvas, 0, 0 )
+
+    const url = flippedCanvas.toDataURL()
+
+    const image = document.createElementNS( 'http://www.w3.org/2000/svg', 'image' )
+    image.classList.add( 'thing' )
+    image.dataset.type = String( type )
+    image.setAttribute( 'width', `${ sprite.width }` )
+    image.setAttribute( 'height', `${ sprite.height }` )
+    image.setAttributeNS( 'http://www.w3.org/1999/xlink', 'href', url )
+    image.setAttribute( 'x', `${ x }` )
+    image.setAttribute( 'y', `${ y }` )
+
+    thing.after( image )
+    thing.remove()
+  })
 }

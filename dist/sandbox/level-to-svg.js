@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("./util");
-exports.levelToSvg = (level, settings) => {
+const data_1 = require("../data");
+const image_to_canvas_1 = require("./image-to-canvas");
+exports.levelToSvg = (om, level, settings) => {
     let minX = Number.MAX_SAFE_INTEGER;
     let minY = Number.MAX_SAFE_INTEGER;
     let maxX = Number.MIN_SAFE_INTEGER;
@@ -32,6 +34,7 @@ exports.levelToSvg = (level, settings) => {
     div.innerHTML = svgText;
     const svg = div.firstElementChild;
     Object.assign(svg.dataset, { minX, minY, maxX, maxY, width, height });
+    decorateThings(om, svg);
     return svg;
 };
 const grid = `
@@ -54,7 +57,9 @@ const linedefsToSvg = (linedefs, vertexes) => linedefs.map(linedef => {
     const end = vertexes[endVertex];
     return `<line class="linedef" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="black"></line>`;
 }).join('');
-const thingsToSvg = (things) => things.map(({ x, y }) => `<circle class="thing" cx="${x}" cy="${y}" r="${32}" fill="rgba( 127, 127, 127, 0.5 )"></circle>`).join('');
+const thingsToSvg = (things) => things.map(({ x, y, type }) => {
+    return `<circle class="thing" data-type="${type}" cx="${x}" cy="${y}" r="${32}" fill="rgba( 127, 127, 127, 0.5 )"></circle>`;
+}).join('');
 const sidedefsToSvg = (linedefs, sidedefs, vertexes) => {
     const length = 8;
     let svg = '';
@@ -96,5 +101,47 @@ const sectorsToSvg = (level) => {
         });
     });
     return svg;
+};
+const decorateThings = (om, svg) => {
+    const things = svg.querySelectorAll('.thing');
+    things.forEach(thing => {
+        const type = parseInt(thing.dataset.type);
+        const data = data_1.thingData.find(t => t.type === type);
+        if (!data)
+            return;
+        if (data.spritePrefix === '')
+            return;
+        let spriteName = data.spritePrefix + 'A0';
+        if (!(spriteName in om.sprites))
+            spriteName = data.spritePrefix + 'A1';
+        if (!(spriteName in om.sprites))
+            return;
+        const cx = parseFloat(thing.getAttribute('cx'));
+        const cy = parseFloat(thing.getAttribute('cy'));
+        const sprite = om.sprites[spriteName];
+        //const x = cx - sprite.width / 2
+        //const y = cy
+        const x = cx - sprite.left;
+        const y = cy - (sprite.height - sprite.top);
+        const canvas = image_to_canvas_1.imageToCanvas(sprite, om.playpal[0], 1);
+        const flippedCanvas = document.createElement('canvas');
+        const context = flippedCanvas.getContext('2d');
+        flippedCanvas.width = canvas.width;
+        flippedCanvas.height = canvas.height;
+        context.translate(0, canvas.height);
+        context.scale(1, -1);
+        context.drawImage(canvas, 0, 0);
+        const url = flippedCanvas.toDataURL();
+        const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        image.classList.add('thing');
+        image.dataset.type = String(type);
+        image.setAttribute('width', `${sprite.width}`);
+        image.setAttribute('height', `${sprite.height}`);
+        image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', url);
+        image.setAttribute('x', `${x}`);
+        image.setAttribute('y', `${y}`);
+        thing.after(image);
+        thing.remove();
+    });
 };
 //# sourceMappingURL=level-to-svg.js.map

@@ -34,8 +34,6 @@ document.addEventListener( 'DOMContentLoaded', async () => {
       const wad = readWad( new Uint8Array( buffer ) )
       const om = createObjectModel( wad )
 
-      console.log( om )
-
       const names = Object.keys( om ).filter(
         n => !exclude.includes( n )
       ).filter(
@@ -202,6 +200,9 @@ document.addEventListener( 'DOMContentLoaded', async () => {
       el.addEventListener( 'click', () => {
         const draw = () => {
           browser3El.innerHTML = ''
+          previewEl.innerHTML = ''
+
+          const svg = levelToSvg( om, level, showLevelElement )
 
           Object.keys( showLevelElement ).forEach( key => {
             const div = document.createElement( 'div' )
@@ -210,9 +211,15 @@ document.addEventListener( 'DOMContentLoaded', async () => {
             const check = document.createElement( 'input' )
             check.type = 'checkbox'
             check.checked = showLevelElement[ key ]
+
             check.onchange = () => {
+              const { x, y, width, height } = svg.viewBox.baseVal
+
               showLevelElement[ key ] = !showLevelElement[ key ]
-              draw()
+
+              const newSvg = draw()
+
+              Object.assign( newSvg.viewBox.baseVal, { x, y, width, height } )
             }
 
             label.appendChild( check )
@@ -222,10 +229,6 @@ document.addEventListener( 'DOMContentLoaded', async () => {
 
             browser3El.appendChild( div )
           } )
-
-          previewEl.innerHTML = ''
-
-          const svg = levelToSvg( level, showLevelElement )
 
           svg.classList.add( 'fit' )
 
@@ -249,6 +252,8 @@ document.addEventListener( 'DOMContentLoaded', async () => {
           }
 
           browser3El.appendChild( resetZoomButton )
+
+          return svg
         }
 
         draw()

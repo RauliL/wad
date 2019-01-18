@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../../utils");
 const name = 'BLOCKMAP';
 const headerSize = 8;
+// does not work correctly :/
 exports.writeBlockmap = (blockmap) => {
     const { x, y, columns, rows, blocks } = blockmap;
     const offsetsSize = blocks.length * 2;

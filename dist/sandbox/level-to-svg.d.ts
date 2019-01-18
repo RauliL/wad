@@ -1,3 +1,3 @@
-import { Level } from '../object-model/types';
+import { Level, DoomObjectModel } from '../object-model/types';
 import { LevelViewSettings } from './types';
-export declare const levelToSvg: (level: Level, settings: LevelViewSettings) => SVGSVGElement;
+export declare const levelToSvg: (om: DoomObjectModel, level: Level, settings: LevelViewSettings) => SVGSVGElement;

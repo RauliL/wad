@@ -7,6 +7,7 @@ const object_model_1 = require("../object-model");
 const image_to_canvas_1 = require("./image-to-canvas");
 const texture_to_canvas_1 = require("./texture-to-canvas");
 const level_to_svg_1 = require("./level-to-svg");
+const svg_events_1 = require("./svg-events");
 const exclude = [
     'type', 'demos', 'dmxgus', 'dmxgusc', 'endoom', 'genmidi', 'music', 'sounds'
 ];
@@ -27,7 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const buffer = e.target['result'];
             const wad = read_wad_1.readWad(new Uint8Array(buffer));
             const om = object_model_1.createObjectModel(wad);
-            console.log(om);
             const names = Object.keys(om).filter(n => !exclude.includes(n)).filter(n => om[n]);
             names.forEach(name => {
                 const browserSelectEl = document.createElement('div');
@@ -149,6 +149,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             el.addEventListener('click', () => {
                 const draw = () => {
                     browser3El.innerHTML = '';
+                    previewEl.innerHTML = '';
+                    const svg = level_to_svg_1.levelToSvg(om, level, showLevelElement);
                     Object.keys(showLevelElement).forEach(key => {
                         const div = document.createElement('div');
                         const label = document.createElement('label');
@@ -157,19 +159,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                         check.type = 'checkbox';
                         check.checked = showLevelElement[key];
                         check.onchange = () => {
+                            const { x, y, width, height } = svg.viewBox.baseVal;
                             showLevelElement[key] = !showLevelElement[key];
-                            draw();
+                            const newSvg = draw();
+                            Object.assign(newSvg.viewBox.baseVal, { x, y, width, height });
                         };
                         label.appendChild(check);
                         label.appendChild(text);
                         div.appendChild(label);
                         browser3El.appendChild(div);
                     });
-                    previewEl.innerHTML = '';
-                    const svg = level_to_svg_1.levelToSvg(level, showLevelElement);
                     svg.classList.add('fit');
-                    zoomSvg(svg);
-                    panSvg(svg);
+                    svg_events_1.zoomSvg(svg);
+                    svg_events_1.panSvg(svg);
                     previewEl.appendChild(svg);
                     const resetZoomButton = document.createElement('button');
                     resetZoomButton.type = 'button';
@@ -183,81 +185,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                         Object.assign(svg.viewBox.baseVal, { x, y, width, height });
                     };
                     browser3El.appendChild(resetZoomButton);
+                    return svg;
                 };
                 draw();
             });
         });
     };
 });
-const zoomSvg = (svg) => svg.onwheel = e => {
-    const { width: clientWidth, height: clientHeight } = svg.getBoundingClientRect();
-    let { x, y, width, height } = svg.viewBox.baseVal;
-    let { layerX, layerY, deltaY } = e;
-    // need to transform layerX, layerY to map coords
-    const scaleX = width / clientWidth;
-    const scaleY = height / clientHeight;
-    layerX *= scaleX;
-    layerY *= scaleY;
-    layerX += x;
-    layerY += y;
-    const amount = 1 + (deltaY / 100);
-    x -= layerX;
-    y -= layerY;
-    x *= amount;
-    y *= amount;
-    width *= amount;
-    height *= amount;
-    x += layerX;
-    y += layerY;
-    Object.assign(svg.viewBox.baseVal, { x, y, width, height });
-};
-const panSvg = (svg) => {
-    let lastPosition = { x: 0, y: 0 };
-    let isDown;
-    const pointFromEvent = e => {
-        let x = 0;
-        let y = 0;
-        if (e['targetTouches']) {
-            x = e.targetTouches[0].layerX;
-            y = e.targetTouches[0].layerY;
-        }
-        else {
-            x = e.layerX;
-            y = e.layerY;
-        }
-        return { x, y };
-    };
-    const onDown = e => {
-        lastPosition = pointFromEvent(e);
-        isDown = true;
-    };
-    const onUp = () => {
-        isDown = false;
-    };
-    const onMove = e => {
-        if (!isDown)
-            return;
-        e.preventDefault();
-        const { width } = svg.viewBox.baseVal;
-        const { width: clientWidth } = svg.getBoundingClientRect();
-        const ratio = width / clientWidth;
-        const position = pointFromEvent(e);
-        svg.viewBox.baseVal.x -= (position.x - lastPosition.x) * ratio;
-        svg.viewBox.baseVal.y -= (position.y - lastPosition.y) * ratio;
-        lastPosition = position;
-    };
-    if ('PointerEvent' in window) {
-        svg.onpointerdown = onDown;
-        svg.onpointerup = onUp;
-        svg.onpointermove = onMove;
-    }
-    else {
-        svg.onmousedown = onDown;
-        svg.onmouseup = onUp;
-        svg.onmousemove = onMove;
-        svg.ontouchstart = onDown;
-        svg.ontouchend = onUp;
-        svg.ontouchmove = onMove;
-    }
-};
 //# sourceMappingURL=index.js.map
