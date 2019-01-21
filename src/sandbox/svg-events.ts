@@ -14,8 +14,20 @@ export const zoomSvg = ( svg: SVGSVGElement ) =>
     layerX += x
     layerY += y
 
-    const amount = 1 + ( deltaY / 100 )
+    /*
+      browsers use different modes and amounts for deltaY - really we should be
+      looking at deltaMode but for now this is close enough
+    */
+    deltaY = deltaY < 0 ? -1 : deltaY > 0 ? 1 : 0
 
+    const amount = 1 + ( deltaY / 40 )
+
+    /*
+      zoom to origin point:
+        translate by -origin
+        scale
+        translate by +origin
+    */
     x -= layerX
     y -= layerY
 

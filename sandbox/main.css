@@ -59,11 +59,17 @@ body, .wad-viewer {
 /*
   The DOOM coordinates are inverted on the y axis
 */
-.preview svg.fit {
+/* .preview svg.fit {
   transform: scaleY( -1 );
-}
+} */
 
 .selected {
   background: #39f;
   color: #fff;
+}
+
+svg image {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }

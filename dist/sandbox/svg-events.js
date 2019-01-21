@@ -11,7 +11,9 @@ exports.zoomSvg = (svg) => svg.onwheel = e => {
     layerY *= scaleY;
     layerX += x;
     layerY += y;
-    const amount = 1 + (deltaY / 100);
+    // should use deltaMode but for now...
+    deltaY = deltaY < 0 ? -1 : deltaY > 0 ? 1 : 0;
+    const amount = 1 + (deltaY / 40);
     x -= layerX;
     y -= layerY;
     x *= amount;
@@ -20,6 +22,8 @@ exports.zoomSvg = (svg) => svg.onwheel = e => {
     height *= amount;
     x += layerX;
     y += layerY;
+    console.log(e);
+    console.log({ x, y, width, height, deltaY });
     Object.assign(svg.viewBox.baseVal, { x, y, width, height });
 };
 exports.panSvg = (svg) => {

@@ -3,15 +3,24 @@ import { LevelViewSettings } from './types'
 import { Vertex, Linedef, Thing, Sidedef } from '../lumps/types'
 import { midPoint, rads, lineEnd } from './util'
 import { thingData } from '../data';
-import { imageToCanvas } from './image-to-canvas';
+import { imageToCanvas } from './image-to-canvas'
+
+const invertY = ( { x, y }: Vertex ) => {
+  y *= -1
+
+  return <Vertex>{ x, y }
+}
 
 export const levelToSvg = ( om: DoomObjectModel, level: Level, settings: LevelViewSettings ) => {
+  // doom y is inverted
+  const vertexes = level.vertexes.map( invertY )
+
   let minX = Number.MAX_SAFE_INTEGER
   let minY = Number.MAX_SAFE_INTEGER
   let maxX = Number.MIN_SAFE_INTEGER
   let maxY = Number.MIN_SAFE_INTEGER
 
-  level.vertexes.forEach( ({ x, y }) => {
+  vertexes.forEach( ({ x, y }) => {
     if( x < minX ) minX = x
     if( x > maxX ) maxX = x
     if( y < minY ) minY = y
@@ -26,9 +35,9 @@ export const levelToSvg = ( om: DoomObjectModel, level: Level, settings: LevelVi
   const svgText = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="${ minX - 8 } ${ minY - 8 } ${ width + 16 } ${ height + 16 }">
       ${ settings.grid ? grid : '' }
-      ${ settings.vertexes ? vertexesToSvg( level.vertexes ) : '' }
-      ${ settings.linedefs ? linedefsToSvg( level.linedefs, level.vertexes ) : '' }
-      ${ settings.sidedefs ? sidedefsToSvg( level.linedefs, level.sidedefs, level.vertexes ) : '' }
+      ${ settings.vertexes ? vertexesToSvg( vertexes ) : '' }
+      ${ settings.linedefs ? linedefsToSvg( level.linedefs, vertexes ) : '' }
+      ${ settings.sidedefs ? sidedefsToSvg( level.linedefs, level.sidedefs, vertexes ) : '' }
       ${ settings.things ? thingsToSvg( level.things ) : '' }
       ${ settings.sectors ? sectorsToSvg( level ) : '' }
     </svg>
@@ -74,7 +83,10 @@ const linedefsToSvg = ( linedefs: Linedef[], vertexes: Vertex[] ) =>
   } ).join( '' )
 
 const thingsToSvg = ( things: Thing[] ) =>
-  things.map( ( { x, y, type } ) => {
+  things.map( thing => {
+    const { type } = thing
+    const { x, y } = invertY( thing )
+
     return `<circle class="thing" data-type="${ type }" cx="${ x }" cy="${ y }" r="${ 32 }" fill="rgba( 127, 127, 127, 0.5 )"></circle>`
   }).join( '' )
 
@@ -108,7 +120,8 @@ const sidedefsToSvg = ( linedefs: Linedef[], sidedefs: Sidedef[], vertexes: Vert
 }
 
 const sectorsToSvg = ( level: Level ) => {
-  const { vertexes, linedefs, sidedefs, sectors } = level
+  const { linedefs, sidedefs, sectors } = level
+  const vertexes = level.vertexes.map( invertY )
 
   const hueStep = 360 / ( sectors.length + 1 )
 
@@ -153,9 +166,12 @@ const decorateThings = ( om: DoomObjectModel, svg: SVGSVGElement ) => {
     const cy = parseFloat( thing.getAttribute( 'cy' )! )
     const sprite = om.sprites[ spriteName ]
     const x = cx - sprite.left
-    const y = cy - ( sprite.height - sprite.top )
+    const y = cy - sprite.top
 
     const canvas = imageToCanvas( sprite, om.playpal[ 0 ], 1 )
+    const url = canvas.toDataURL()
+
+    /*
     const flippedCanvas = document.createElement( 'canvas' )
     const context = flippedCanvas.getContext( '2d' )!
 
@@ -167,6 +183,7 @@ const decorateThings = ( om: DoomObjectModel, svg: SVGSVGElement ) => {
     context.drawImage( canvas, 0, 0 )
 
     const url = flippedCanvas.toDataURL()
+    */
 
     const image = document.createElementNS( 'http://www.w3.org/2000/svg', 'image' )
     image.classList.add( 'thing' )

@@ -3,12 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const util_1 = require("./util");
 const data_1 = require("../data");
 const image_to_canvas_1 = require("./image-to-canvas");
+const invertY = ({ x, y }) => {
+    y *= -1;
+    return { x, y };
+};
 exports.levelToSvg = (om, level, settings) => {
+    // doom y is inverted
+    const vertexes = level.vertexes.map(invertY);
     let minX = Number.MAX_SAFE_INTEGER;
     let minY = Number.MAX_SAFE_INTEGER;
     let maxX = Number.MIN_SAFE_INTEGER;
     let maxY = Number.MIN_SAFE_INTEGER;
-    level.vertexes.forEach(({ x, y }) => {
+    vertexes.forEach(({ x, y }) => {
         if (x < minX)
             minX = x;
         if (x > maxX)
@@ -24,9 +30,9 @@ exports.levelToSvg = (om, level, settings) => {
     const svgText = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="${minX - 8} ${minY - 8} ${width + 16} ${height + 16}">
       ${settings.grid ? grid : ''}
-      ${settings.vertexes ? vertexesToSvg(level.vertexes) : ''}
-      ${settings.linedefs ? linedefsToSvg(level.linedefs, level.vertexes) : ''}
-      ${settings.sidedefs ? sidedefsToSvg(level.linedefs, level.sidedefs, level.vertexes) : ''}
+      ${settings.vertexes ? vertexesToSvg(vertexes) : ''}
+      ${settings.linedefs ? linedefsToSvg(level.linedefs, vertexes) : ''}
+      ${settings.sidedefs ? sidedefsToSvg(level.linedefs, level.sidedefs, vertexes) : ''}
       ${settings.things ? thingsToSvg(level.things) : ''}
       ${settings.sectors ? sectorsToSvg(level) : ''}
     </svg>
@@ -57,7 +63,9 @@ const linedefsToSvg = (linedefs, vertexes) => linedefs.map(linedef => {
     const end = vertexes[endVertex];
     return `<line class="linedef" x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="black"></line>`;
 }).join('');
-const thingsToSvg = (things) => things.map(({ x, y, type }) => {
+const thingsToSvg = (things) => things.map(thing => {
+    const { type } = thing;
+    const { x, y } = invertY(thing);
     return `<circle class="thing" data-type="${type}" cx="${x}" cy="${y}" r="${32}" fill="rgba( 127, 127, 127, 0.5 )"></circle>`;
 }).join('');
 const sidedefsToSvg = (linedefs, sidedefs, vertexes) => {
@@ -84,7 +92,8 @@ const sidedefsToSvg = (linedefs, sidedefs, vertexes) => {
     return svg;
 };
 const sectorsToSvg = (level) => {
-    const { vertexes, linedefs, sidedefs, sectors } = level;
+    const { linedefs, sidedefs, sectors } = level;
+    const vertexes = level.vertexes.map(invertY);
     const hueStep = 360 / (sectors.length + 1);
     let svg = '';
     sectors.forEach((_sector, s) => {
@@ -120,16 +129,22 @@ const decorateThings = (om, svg) => {
         const cy = parseFloat(thing.getAttribute('cy'));
         const sprite = om.sprites[spriteName];
         const x = cx - sprite.left;
-        const y = cy - (sprite.height - sprite.top);
+        const y = cy - sprite.top;
         const canvas = image_to_canvas_1.imageToCanvas(sprite, om.playpal[0], 1);
-        const flippedCanvas = document.createElement('canvas');
-        const context = flippedCanvas.getContext('2d');
-        flippedCanvas.width = canvas.width;
-        flippedCanvas.height = canvas.height;
-        context.translate(0, canvas.height);
-        context.scale(1, -1);
-        context.drawImage(canvas, 0, 0);
-        const url = flippedCanvas.toDataURL();
+        const url = canvas.toDataURL();
+        /*
+        const flippedCanvas = document.createElement( 'canvas' )
+        const context = flippedCanvas.getContext( '2d' )!
+    
+        flippedCanvas.width = canvas.width
+        flippedCanvas.height = canvas.height
+    
+        context.translate( 0, canvas.height )
+        context.scale( 1, -1 )
+        context.drawImage( canvas, 0, 0 )
+    
+        const url = flippedCanvas.toDataURL()
+        */
         const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
         image.classList.add('thing');
         image.dataset.type = String(type);
