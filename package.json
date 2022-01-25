@@ -10,7 +10,6 @@
     "clean": "rimraf './dist'",
     "test": "tsc && mocha ./dist/test",
     "coverage": "tsc && nyc --reporter=html --reporter=text mocha ./dist/test",
-    "sandbox": "tsc && browserify ./dist/sandbox/index.js -o ./sandbox/main.js",
     "prebuild": "yarn run clean",
     "prepack": "yarn run build"
   },
