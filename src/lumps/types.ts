@@ -63,7 +63,11 @@ export interface Picture extends IndexedImage {
   top: number;
 }
 
-export type Rgb = [number, number, number];
+export type Color = {
+  r: number;
+  g: number;
+  b: number;
+};
 
 export interface Sector {
   floorHeight: number;

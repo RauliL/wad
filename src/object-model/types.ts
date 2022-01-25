@@ -1,4 +1,5 @@
 import {
+  Color,
   Thing,
   Linedef,
   Sidedef,
@@ -10,7 +11,6 @@ import {
   Blockmap,
   Flat,
   Picture,
-  Rgb,
   Texture,
 } from "../lumps/types.js";
 import { WadType } from "../wad/types.js";
@@ -31,17 +31,9 @@ export interface Level {
   blockmap: Blockmap;
 }
 
-export interface FlatMap {
-  [name: string]: Flat;
-}
-
-export interface PictureMap {
-  [name: string]: Picture;
-}
-
-export interface RawMap {
-  [name: string]: DataView;
-}
+export type FlatMap = Record<string, Flat>;
+export type PictureMap = Record<string, Picture>;
+export type RawMap = Record<string, DataView>;
 
 export interface DoomObjectModel {
   type: WadType;
@@ -54,7 +46,7 @@ export interface DoomObjectModel {
   genmidi: RawMap;
   levels: Level[];
   music: RawMap;
-  playpal: Uint8Array[];
+  playpal: Color[][];
   patches: PictureMap;
   sounds: RawMap;
   sprites: PictureMap;

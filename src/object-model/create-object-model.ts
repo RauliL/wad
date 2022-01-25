@@ -1,4 +1,5 @@
 import { readLumpData } from "../lumps/read-lump-data.js";
+import { Color } from "../lumps/types.js";
 import { Wad, Lump } from "../wad/types.js";
 import {
   NameToIndexMap,
@@ -178,7 +179,7 @@ const getPlayPal = (
   wad: Wad,
   nameToIndexMap: NameToIndexMap,
   processed: boolean[]
-): Uint8Array[] => getLump(wad, nameToIndexMap, processed, "PLAYPAL") || [];
+): Color[][] => getLump(wad, nameToIndexMap, processed, "PLAYPAL") || [];
 
 const getColorMap = (
   wad: Wad,
