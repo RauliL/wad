@@ -1,5 +1,5 @@
-import { readInt16 } from "../../utils";
-import { Seg } from "../types";
+import { readInt16 } from "../../utils.js";
+import { Seg } from "../types.js";
 
 const size = 12;
 

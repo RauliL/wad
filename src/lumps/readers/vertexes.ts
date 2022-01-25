@@ -1,5 +1,5 @@
-import { readInt16 } from "../../utils";
-import { Vertex } from "../types";
+import { readInt16 } from "../../utils.js";
+import { Vertex } from "../types.js";
 
 const size = 4;
 

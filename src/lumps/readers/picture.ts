@@ -1,5 +1,5 @@
-import { readInt16, readInt32, readUint8 } from "../../utils";
-import { Picture } from "../types";
+import { readInt16, readInt32, readUint8 } from "../../utils.js";
+import { Picture } from "../types.js";
 
 // nb this is just a hack, should actually search for an unused color and use
 // that instead

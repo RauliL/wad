@@ -1,3 +1,4 @@
-export * from "./lumps";
-export * from "./object-model";
-export * from "./wad";
+export * from "./data/types.js";
+export * from "./lumps/index.js";
+export * from "./object-model/index.js";
+export * from "./wad/index.js";

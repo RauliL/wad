@@ -12,12 +12,10 @@ import {
   Picture,
   Rgb,
   Texture,
-} from "../lumps/types";
-import { WadType } from "../wad/types";
+} from "../lumps/types.js";
+import { WadType } from "../wad/types.js";
 
-export interface NameToIndexMap {
-  [name: string]: number;
-}
+export type NameToIndexMap = Record<string, number>;
 
 export interface Level {
   name: string;

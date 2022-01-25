@@ -1,12 +1,12 @@
-import { readInt16, readAscii } from "../../utils";
-import { Sidedef } from "../types";
+import { readInt16, readAscii } from "../../utils.js";
+import { Sidedef } from "../types.js";
 
 const size = 30;
 
 export const sidedefs = (view: DataView) => {
   const count = view.byteLength / size;
 
-  const getSidedef = (view: DataView, offset) => {
+  const getSidedef = (view: DataView, offset: number) => {
     const x = readInt16(view, offset);
     const y = readInt16(view, offset + 2);
     const upper = readAscii(view, offset + 4, offset + 12);

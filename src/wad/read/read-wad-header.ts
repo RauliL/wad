@@ -1,5 +1,5 @@
-import { readAscii, readInt32 } from "../../utils";
-import { WadHeader } from "../types";
+import { readAscii, readInt32 } from "../../utils.js";
+import { WadHeader } from "../types.js";
 
 export const readWadHeader = (data: Uint8Array) => {
   const wadView = new DataView(data.buffer);

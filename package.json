@@ -1,9 +1,15 @@
 {
-  "name": "@nrkn/wad",
-  "version": "0.0.2",
+  "name": "@rauli/wad",
+  "type": "module",
+  "version": "0.0.3",
   "description": "Work with the Doom WAD format",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

@@ -1,1 +1,1 @@
-export { writeWad } from "./write-wad";
+export { writeWad } from "./write-wad.js";

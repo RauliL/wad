@@ -1,5 +1,5 @@
-import { Blockmap } from "../types";
-import { writeInt16, writeUint16 } from "../../utils";
+import { Blockmap } from "../types.js";
+import { writeInt16, writeUint16 } from "../../utils.js";
 
 const name = "BLOCKMAP";
 const headerSize = 8;

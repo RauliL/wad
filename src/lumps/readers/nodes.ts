@@ -1,5 +1,5 @@
-import { readInt16 } from "../../utils";
-import { Node } from "../types";
+import { readInt16 } from "../../utils.js";
+import { Node } from "../types.js";
 
 const size = 28;
 

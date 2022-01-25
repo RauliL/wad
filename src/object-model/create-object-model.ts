@@ -1,5 +1,5 @@
-import { readLumpData } from "../lumps/read-lump-data";
-import { Wad, Lump } from "../wad/types";
+import { readLumpData } from "../lumps/read-lump-data.js";
+import { Wad, Lump } from "../wad/types.js";
 import {
   NameToIndexMap,
   Level,
@@ -8,8 +8,8 @@ import {
   RawMap,
   DoomObjectModel,
   ReadDoomObjectModelOptions,
-} from "./types";
-import { Rgb, Texture } from "../lumps/types";
+} from "./types.js";
+import { Texture } from "../lumps/types.js";
 
 //should be a unique lump name, otherwise associations are unreliable
 const getLump = (
@@ -37,7 +37,7 @@ const getLevelIndices = (lumps: Lump[]) =>
     return indices;
   }, Array<number>());
 
-const getLevel = (wad: Wad, index: number, processed: boolean[]) => {
+const getLevel = (wad: Wad, index: number, processed: boolean[]): Level => {
   const lumpNames = [
     "things",
     "linedefs",
@@ -54,7 +54,7 @@ const getLevel = (wad: Wad, index: number, processed: boolean[]) => {
   processed[index] = true;
 
   return <Level>lumpNames.reduce(
-    (map, lumpName, i) => {
+    (map: Record<string, any>, lumpName, i) => {
       processed[index + i + 1] = true;
 
       map[lumpName] = readLumpData(wad.lumps[index + i + 1].data, lumpName);
@@ -325,7 +325,7 @@ export const defaultOptions: ReadDoomObjectModelOptions = {
 export const createObjectModel = (
   wad: Wad,
   options?: Partial<ReadDoomObjectModelOptions>
-) => {
+): Partial<DoomObjectModel> => {
   if (!options) options = defaultOptions;
 
   const processed = Array<boolean>(wad.lumps.length);

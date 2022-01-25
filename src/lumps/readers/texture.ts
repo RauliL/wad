@@ -1,5 +1,5 @@
-import { readInt32, readAscii, readInt16 } from "../../utils";
-import { Texture } from "../types";
+import { readInt32, readAscii, readInt16 } from "../../utils.js";
+import { Texture } from "../types.js";
 
 export const texture = (view: DataView) => {
   const textureCount = readInt32(view, 0);

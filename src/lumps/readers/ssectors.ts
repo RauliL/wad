@@ -1,5 +1,5 @@
-import { readInt16 } from "../../utils";
-import { Ssector } from "../types";
+import { readInt16 } from "../../utils.js";
+import { Ssector } from "../types.js";
 
 const size = 4;
 

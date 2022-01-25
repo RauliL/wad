@@ -1,2 +1,2 @@
-export { readLumpData } from "./read-lump-data";
-export * from "./types";
+export { readLumpData } from "./read-lump-data.js";
+export * from "./types.js";

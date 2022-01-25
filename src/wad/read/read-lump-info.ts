@@ -1,6 +1,6 @@
-import { WadHeader, LumpInfo } from "../types";
-import { readInt32, readAscii } from "../../utils";
-import { readWadHeader } from "./read-wad-header";
+import { WadHeader, LumpInfo } from "../types.js";
+import { readInt32, readAscii } from "../../utils.js";
+import { readWadHeader } from "./read-wad-header.js";
 
 const readLumpInfo = (wadView: DataView, lumpOffset: number, id: number) => {
   const offset = readInt32(wadView, lumpOffset);

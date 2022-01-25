@@ -1,4 +1,4 @@
-import { LumpInfo, Lump } from "../types";
+import { LumpInfo, Lump } from "../types.js";
 
 export const readLump = (wadData: Uint8Array, info: LumpInfo) => {
   const { name, offset, length } = info;

@@ -1,5 +1,5 @@
-import { readInt16, readAscii } from "../../utils";
-import { Sector } from "../types";
+import { readInt16, readAscii } from "../../utils.js";
+import { Sector } from "../types.js";
 
 const size = 26;
 

@@ -1,4 +1,4 @@
-import { readUint8 } from "../../utils";
+import { readUint8 } from "../../utils.js";
 
 const count = 34;
 const size = 256;

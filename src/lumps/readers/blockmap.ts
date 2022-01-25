@@ -1,5 +1,5 @@
-import { Blockmap } from "../types";
-import { readInt16, readUint16 } from "../../utils";
+import { Blockmap } from "../types.js";
+import { readInt16, readUint16 } from "../../utils.js";
 
 export const blockmap = (view: DataView) => {
   const x = readInt16(view, 0);

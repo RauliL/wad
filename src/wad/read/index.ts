@@ -1,1 +1,1 @@
-export { readWad } from "./read-wad";
+export { readWad } from "./read-wad.js";

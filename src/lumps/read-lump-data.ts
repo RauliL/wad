@@ -1,20 +1,20 @@
-import { things } from "./readers/things";
-import { linedefs } from "./readers/linedefs";
-import { sidedefs } from "./readers/sidedefs";
-import { vertexes } from "./readers/vertexes";
-import { segs } from "./readers/segs";
-import { ssectors } from "./readers/ssectors";
-import { nodes } from "./readers/nodes";
-import { sectors } from "./readers/sectors";
-import { playpal } from "./readers/playpal";
-import { pnames } from "./readers/pnames";
-import { texture } from "./readers/texture";
-import { colormap } from "./readers/colormap";
-import { flat } from "./readers/flat";
-import { picture } from "./readers/picture";
-import { blockmap } from "./readers/blockmap";
-import { raw } from "./readers/raw";
-import { ReaderMap } from "./types";
+import { things } from "./readers/things.js";
+import { linedefs } from "./readers/linedefs.js";
+import { sidedefs } from "./readers/sidedefs.js";
+import { vertexes } from "./readers/vertexes.js";
+import { segs } from "./readers/segs.js";
+import { ssectors } from "./readers/ssectors.js";
+import { nodes } from "./readers/nodes.js";
+import { sectors } from "./readers/sectors.js";
+import { playpal } from "./readers/playpal.js";
+import { pnames } from "./readers/pnames.js";
+import { texture } from "./readers/texture.js";
+import { colormap } from "./readers/colormap.js";
+import { flat } from "./readers/flat.js";
+import { picture } from "./readers/picture.js";
+import { blockmap } from "./readers/blockmap.js";
+import { raw } from "./readers/raw.js";
+import { ReaderMap } from "./types.js";
 
 export const readers: ReaderMap = {
   things,

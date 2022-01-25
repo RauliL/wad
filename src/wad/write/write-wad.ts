@@ -1,10 +1,10 @@
-import { Wad } from "../types";
+import { Wad } from "../types.js";
 import {
   writeAscii,
   ensureStringLength,
   writeInt32,
   lumpNameRegex,
-} from "../../utils";
+} from "../../utils.js";
 
 const headerSize = 12;
 

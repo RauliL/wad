@@ -1,6 +1,6 @@
-import { readInt32, readAscii } from "../../utils";
+import { readInt32, readAscii } from "../../utils.js";
 
-export const pnames = (view: DataView) => {
+export const pnames = (view: DataView): string[] => {
   const count = readInt32(view, 0);
 
   let offset = 4;

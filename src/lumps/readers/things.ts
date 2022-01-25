@@ -1,21 +1,20 @@
-import { ThingFlags, Thing } from "../types";
-import { readInt16 } from "../../utils";
+import { ThingFlags, Thing } from "../types.js";
+import { readInt16 } from "../../utils.js";
 
 const size = 10;
 
 export const things = (view: DataView) => {
   const count = view.byteLength / size;
 
-  const getFlags = (flags) =>
-    <ThingFlags>{
-      easy: !!(flags & 0x0001),
-      medium: !!(flags & 0x0002),
-      hard: !!(flags & 0x0004),
-      deaf: !!(flags & 0x0008),
-      multiplayer: !!(flags & 0x0010),
-    };
+  const getFlags = (flags: number): ThingFlags => ({
+    easy: !!(flags & 0x0001),
+    medium: !!(flags & 0x0002),
+    hard: !!(flags & 0x0004),
+    deaf: !!(flags & 0x0008),
+    multiplayer: !!(flags & 0x0010),
+  });
 
-  const getThing = (view: DataView, offset: number) => {
+  const getThing = (view: DataView, offset: number): Thing => {
     const x = readInt16(view, offset);
     const y = readInt16(view, offset + 2);
     const angle = readInt16(view, offset + 4);

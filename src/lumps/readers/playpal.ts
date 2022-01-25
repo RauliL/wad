@@ -1,5 +1,4 @@
-import { Rgb } from "../types";
-import { readUint8 } from "../../utils";
+import { readUint8 } from "../../utils.js";
 
 const paletteCount = 14;
 
