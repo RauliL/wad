@@ -1,16 +1,16 @@
-import { readInt32, readAscii } from '../../utils'
+import { readInt32, readAscii } from "../../utils";
 
-export const pnames = ( view: DataView ) => {
-  const count = readInt32( view, 0 )
+export const pnames = (view: DataView) => {
+  const count = readInt32(view, 0);
 
-  let offset = 4
+  let offset = 4;
 
-  const pnames = Array<string>( count )
+  const pnames = Array<string>(count);
 
-  for ( var i = 0; i < count; i++ ) {
-    pnames[ i ] = readAscii( view, offset, offset + 8 )
-    offset += 8
+  for (var i = 0; i < count; i++) {
+    pnames[i] = readAscii(view, offset, offset + 8);
+    offset += 8;
   }
 
-  return pnames
-}
+  return pnames;
+};

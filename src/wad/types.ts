@@ -1,24 +1,24 @@
-export type WadType = 'IWAD' | 'PWAD'
+export type WadType = "IWAD" | "PWAD";
 
 export interface Wad {
-  type: WadType
-  lumps: Lump[]
+  type: WadType;
+  lumps: Lump[];
 }
 
 export interface Lump {
-  name: string
-  data: Uint8Array
+  name: string;
+  data: Uint8Array;
 }
 
 export interface WadHeader {
-  type: WadType
-  numberOfLumps: number
-  infoTableOffset: number
+  type: WadType;
+  numberOfLumps: number;
+  infoTableOffset: number;
 }
 
 export interface LumpInfo {
-  id: number
-  name: string
-  offset: number
-  length: number
+  id: number;
+  name: string;
+  offset: number;
+  length: number;
 }

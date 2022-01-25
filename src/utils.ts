@@ -1,50 +1,50 @@
-export const readUint8 = ( view: DataView, offset: number ) =>
-  view.getUint8( offset )
+export const readUint8 = (view: DataView, offset: number) =>
+  view.getUint8(offset);
 
-export const readInt16 = ( view: DataView, offset: number ) =>
-  view.getInt16( offset, true )
+export const readInt16 = (view: DataView, offset: number) =>
+  view.getInt16(offset, true);
 
-export const readUint16 = ( view: DataView, offset: number ) =>
-  view.getUint16( offset, true )
+export const readUint16 = (view: DataView, offset: number) =>
+  view.getUint16(offset, true);
 
-export const readInt32 = ( view: DataView, offset: number ) =>
-  view.getInt32( offset, true )
+export const readInt32 = (view: DataView, offset: number) =>
+  view.getInt32(offset, true);
 
-export const writeInt16 = ( view: DataView, offset: number, value: number ) =>
-  view.setInt16( offset, value, true )
+export const writeInt16 = (view: DataView, offset: number, value: number) =>
+  view.setInt16(offset, value, true);
 
-export const writeUint16 = ( view: DataView, offset: number, value: number ) =>
-  view.setUint16( offset, value, true )
+export const writeUint16 = (view: DataView, offset: number, value: number) =>
+  view.setUint16(offset, value, true);
 
-export const writeInt32 = ( view: DataView, offset: number, value: number ) =>
-  view.setInt32( offset, value, true )
+export const writeInt32 = (view: DataView, offset: number, value: number) =>
+  view.setInt32(offset, value, true);
 
-export const readAscii = ( view: DataView, offset: number, length: number ) => {
-  let result = ''
+export const readAscii = (view: DataView, offset: number, length: number) => {
+  let result = "";
 
-  for ( let i = offset; i < length; i++ ) {
-    result += String.fromCharCode( view.getUint8( i ) )
+  for (let i = offset; i < length; i++) {
+    result += String.fromCharCode(view.getUint8(i));
   }
 
-  return result.replace( /\0/g, '' )
-}
+  return result.replace(/\0/g, "");
+};
 
-export const writeAscii = ( view: DataView, offset: number, value: string ) => {
-  for ( let i = 0; i < value.length; i++ ) {
-    view.setUint8( offset + i, value.charCodeAt( i ) )
+export const writeAscii = (view: DataView, offset: number, value: string) => {
+  for (let i = 0; i < value.length; i++) {
+    view.setUint8(offset + i, value.charCodeAt(i));
   }
-}
+};
 
-export const ensureStringLength = ( str: string, len: number ) => {
-  if ( str.length > len ) {
-    str = str.substr( 0, len )
-  }
-
-  while ( str.length < len ) {
-    str += '\0'
+export const ensureStringLength = (str: string, len: number) => {
+  if (str.length > len) {
+    str = str.substr(0, len);
   }
 
-  return str
-}
+  while (str.length < len) {
+    str += "\0";
+  }
 
-export const lumpNameRegex = /[0-9A-Z\[\]_\-\\]+/
+  return str;
+};
+
+export const lumpNameRegex = /[0-9A-Z\[\]_\-\\]+/;

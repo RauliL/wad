@@ -1,28 +1,25 @@
-import { readFileSync, writeFileSync } from 'fs'
-import { readWad, readLumpData } from '../../..'
-import { findLump, testLumps, compress } from '../utils'
+import { readFileSync, writeFileSync } from "fs";
+import { readWad, readLumpData } from "../../..";
+import { findLump, testLumps, compress } from "../utils";
 
 export const generateLumps = () => {
-  const testWadData = readFileSync( './src/test/fixtures/doom1.wad' )
-  const testWad = readWad( testWadData )
-  const { lumps } = testWad
+  const testWadData = readFileSync("./src/test/fixtures/doom1.wad");
+  const testWad = readWad(testWadData);
+  const { lumps } = testWad;
 
-  const lumpTypes = Object.keys( testLumps )
+  const lumpTypes = Object.keys(testLumps);
 
-  const generateLump = ( lumpType: string ) => {
-    const lumpName: string = (
-      testLumps[ lumpType ] === true ?
-        lumpType :
-        testLumps[ lumpType ]
-    )
+  const generateLump = (lumpType: string) => {
+    const lumpName: string =
+      testLumps[lumpType] === true ? lumpType : testLumps[lumpType];
 
-    const lump = findLump( lumps, lumpName.toUpperCase() )
+    const lump = findLump(lumps, lumpName.toUpperCase());
 
     writeFileSync(
-      `./src/test/fixtures/expect/lumps/${ lumpType }.json.gz`,
-      compress( readLumpData( lump.data, lumpType ) )
-    )
-  }
+      `./src/test/fixtures/expect/lumps/${lumpType}.json.gz`,
+      compress(readLumpData(lump.data, lumpType))
+    );
+  };
 
-  lumpTypes.forEach( generateLump )
-}
+  lumpTypes.forEach(generateLump);
+};
