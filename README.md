@@ -1,41 +1,52 @@
-# wad
+# @rauli/wad
 
-Work with the Doom WAD format
+Work with the Doom WAD format.
 
-`npm install @nrkn/wad`
+Fork of [@nrkn/wad](https://www.npmjs.com/package/@nrkn/wad).
 
-```javascript
-const { readFileSync, writeFileSync } = require( 'fs' )
-const {
-  readWad, writeWad, readLumpData, createObjectModel
-} = require( '@nrkn/wad' )
+## Installation
+
+```sh
+$ npm install --save @rauli/wad
+```
+
+## Usage
+
+```typescript
+import { readFileSync, writeFileSync } from "fs";
+import {
+  readWad,
+  writeWad,
+  readLumpData,
+  createObjectModel,
+} from "@rauli/wad";
 
 // read a wad
-const wad = readWad( readFileSync( 'example.wad' ) )
+const wad = readWad(readFileSync("example.wad"));
 
 // write a wad
 const newLump = {
-  name: 'NEWLUMP',
-  data: new Uint8Array( [ 1, 2, 3 ] )
-}
+  name: "NEWLUMP",
+  data: new Uint8Array([1, 2, 3]),
+};
 
-wad.lumps.push( newLump )
+wad.lumps.push(newLump);
 
-writeFileSync( 'new.wad', writeWad( wad ) )
+writeFileSync("new.wad", writeWad(wad));
 
 // read lump data
-const playpalLump = wad.lumps.find( lump => lump.name === 'PLAYPAL' )
+const playpalLump = wad.lumps.find((lump) => lump.name === "PLAYPAL");
 
-const palettes = readLumpData( playpalLump.data, 'PLAYPAL' )
+const palettes = readLumpData(playpalLump.data, "PLAYPAL");
 
 // create an object model
-const doomObjectModel = createObjectModel( wad )
+const doomObjectModel = createObjectModel(wad);
 
-const { levels } = doomObjectModel
+const { levels } = doomObjectModel;
 
-const e1m1 = levels.find( level => level.name === 'E1M1' )
+const e1m1 = levels.find((level) => level.name === "E1M1");
 
-e1m1.vertexes.forEach( v => console.log( v.x, v.y ) )
+e1m1.vertexes.forEach((v) => console.log(v.x, v.y));
 
 // etc.
 ```
